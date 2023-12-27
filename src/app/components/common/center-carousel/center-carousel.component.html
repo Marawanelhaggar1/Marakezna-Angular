@@ -15,7 +15,7 @@
             {{ lang === "ltr" ? "View All" : " عرض الكل " }}
         </a>
     </div>
-    <owl-carousel-o [options]="customOptions">
+    <owl-carousel-o dir="ltr" [options]="customOptions">
         <ng-template *ngFor="let item of centers" carouselSlide>
             <img [src]="item.image" alt="center image"
         /></ng-template>
