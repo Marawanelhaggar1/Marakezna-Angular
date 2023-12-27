@@ -1,0 +1,322 @@
+<div [dir]="lang" class="container">
+    <div class="titles row">
+        <div (click)="showForm1()" class="button col-6">
+            <i class="flaticon-084-calendar"></i>
+            <p>{{ lang === "ltr" ? "  Clinic Visits " : " زيارة العياده " }}</p>
+        </div>
+        <div (click)="showForm2()" class="button col-6">
+            <i class="flaticon-065-microscope"></i>
+            <p>{{ lang === "ltr" ? "  Scan&Lab " : "أشعة ومعامل" }}</p>
+        </div>
+    </div>
+    <form class="row" *ngIf="form1" [formGroup]="searchForm">
+        <div class="form-group col p-2">
+            <label>{{ lang === "ltr" ? "  Area " : " المنطقة " }}</label>
+
+            <input
+                [typeahead]="areas"
+                formControlName="area"
+                [placeholder]="lang === 'ltr' ? 'Area' : 'المنطقة'"
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                [optionsListTemplate]="customListTemplate1"
+                (typeaheadOnSelect)="getCenter()"
+                class="form-control"
+            />
+            <ng-template
+                #customListTemplate1
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="bx bx-current-location"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col p-2">
+            <label>{{ lang === "ltr" ? "  Center " : " مركز " }}</label>
+
+            <input
+                [typeahead]="centers"
+                formControlName="center"
+                [placeholder]="lang === 'ltr' ? 'Center' : 'مركز'"
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                (typeaheadOnSelect)="getDoctor()"
+                [optionsListTemplate]="customListTemplate2"
+                class="form-control"
+            />
+            <ng-template
+                #customListTemplate2
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="bx bx-building-house"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col p-2">
+            <label>{{ lang === "ltr" ? "  Specialty " : " التخصص " }}</label>
+
+            <input
+                [typeahead]="specialties"
+                formControlName="specialty"
+                [placeholder]="lang === 'ltr' ? 'Specialty' : 'التخصص'"
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                (typeaheadOnSelect)="getDoctor()"
+                [optionsListTemplate]="customListTemplate3"
+                class="form-control"
+            />
+            <ng-template
+                #customListTemplate3
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="flaticon-063-stethoscope-tool"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col p-2">
+            <label>{{ lang === "ltr" ? "  Doctor " : " دكتور " }}</label>
+            <input
+                [typeahead]="doctor"
+                formControlName="doctor"
+                [placeholder]="lang === 'ltr' ? 'Doctors' : 'الدكتور'"
+                [optionsListTemplate]="customListTemplate"
+                class="form-control"
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                (typeaheadOnSelect)="set()"
+            />
+            <ng-template
+                #customListTemplate
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="flaticon-149-doctor-2"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col-3">
+            <a
+                [routerLink]="['/book-doctor']"
+                [queryParams]="{
+                    center: CenterId,
+                    doctor: docId,
+                    specialty: specialtyId,
+                }"
+                class="default-btn"
+            >
+                <i *ngIf="lang === 'ltr'" class="bx bx-search"></i>
+                <span> {{ lang === "ltr" ? "  Search " : " ابحث " }} </span>
+                <i *ngIf="lang === 'rtl'" class="bx bx-search"></i>
+            </a>
+        </div>
+    </form>
+
+    <form class="row" *ngIf="form2" [formGroup]="scanForm">
+        <div class="form-group col p-2">
+            <label>{{
+                lang === "ltr" ? "Search Category" : " فئة البحث "
+            }}</label>
+
+            <input
+                [typeahead]="categories"
+                formControlName="category"
+                [placeholder]="
+                    lang === 'ltr' ? 'Search Category' : ' فئة البحث '
+                "
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                [optionsListTemplate]="customListTemplate"
+                class="form-control"
+            />
+            <ng-template
+                #customListTemplate
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="flaticon-149-doctor-2"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col p-2">
+            <label>{{ lang === "ltr" ? "  Area " : " المنطقة " }}</label>
+
+            <input
+                [typeahead]="areas"
+                formControlName="area"
+                [placeholder]="lang === 'ltr' ? 'Area' : 'المنطقة'"
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                [optionsListTemplate]="customListTemplate5"
+                (typeaheadOnSelect)="setScan()"
+                class="form-control"
+            />
+            <ng-template
+                #customListTemplate5
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="bx bx-current-location"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col p-2">
+            <label>{{ lang === "ltr" ? "  Center " : " مركز " }}</label>
+
+            <input
+                [typeahead]="centers"
+                formControlName="center"
+                [placeholder]="lang === 'ltr' ? 'Center' : 'مركز'"
+                [typeaheadOptionsLimit]="100"
+                [typeaheadMinLength]="0"
+                (typeaheadOnSelect)="setScan()"
+                [optionsListTemplate]="customListTemplate2"
+                class="form-control"
+            />
+            <ng-template
+                #customListTemplate2
+                let-matches="matches"
+                let-query="query"
+                let-typeaheadTemplateMethods
+            >
+                <ul class="custom-list-group">
+                    <li
+                        class="custom-list-group-item"
+                        *ngFor="let match of matches"
+                        [class.active]="
+                            typeaheadTemplateMethods.isActive(match)
+                        "
+                        (click)="
+                            typeaheadTemplateMethods.selectMatch(match, $event)
+                        "
+                        (mouseenter)="
+                            typeaheadTemplateMethods.selectActive(match)
+                        "
+                    >
+                        <i class="bx bx-building-house"></i>
+                        {{ match }}
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+        <div class="form-group col-3">
+            <a
+                [routerLink]="['/scanAndLabs']"
+                [queryParams]="{
+                    category: this.scanForm.value.category,
+                    area: areaId,
+                    center: CenterId
+                }"
+                class="default-btn"
+            >
+                <i *ngIf="lang === 'ltr'" class="bx bx-search"></i>
+                <span> {{ lang === "ltr" ? "  Search " : " ابحث " }} </span>
+                <i *ngIf="lang === 'rtl'" class="bx bx-search"></i>
+            </a>
+        </div>
+    </form>
+</div>

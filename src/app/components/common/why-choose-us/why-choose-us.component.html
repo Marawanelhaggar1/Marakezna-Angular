@@ -1,0 +1,98 @@
+<!-- Default Why Choose Us Section -->
+<div
+    class="dental-tourism-choose-area ptb-100"
+    [ngClass]="{'d-none': router.url === '/index-5'}"
+>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12">
+                <div class="dental-tourism-choose-image">
+                    <img src="assets/images/dental-tourism/choose/choose.png" alt="choose-image">
+                    <button class="video-btn" (click)="openPopup()">
+                        <i class='bx bx-play'></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="dental-tourism-choose-content">
+                    <span class="sub-title">
+                        <i class="flaticon-198-hashtag-1"></i>
+                        Why Choose Us
+                    </span>
+                    <h2>Benefits of Dental Tourism</h2>
+                    <p>Vivamus magna justo lacinia eget consectetur sed convallis tellus. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam dui posuere blandit.</p>
+                    <div class="choose-inner-content">
+                        <i class='bx bxs-badge-check'></i>
+                        <h4>Low Cost</h4>
+                        <p>Curabitur aliquet quam id dui posuere blandit. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec sollicitudin molestie malesuada. Curabitur arcu erat accumsan id imperdiet et porttitor at sem.</p>
+                    </div>
+                    <div class="choose-inner-content">
+                        <i class='bx bxs-badge-check'></i>
+                        <h4>Highly Qualified Staff</h4>
+                        <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis loremut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada.</p>
+                    </div>
+                    <div class="choose-inner-content">
+                        <i class='bx bxs-badge-check'></i>
+                        <h4>Idyllic Destination</h4>
+                        <p>Curabitur aliquet quam id dui posuere blandit. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec sollicitudin molestie malesuada. Curabitur arcu erat accumsan id imperdiet et porttitor at sem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Choose Us Section for Home Demo - 5 -->
+<div
+    class="skin-care-dry-area ptb-100 d-none"
+    [ngClass]="{'d-block': router.url === '/index-5'}"
+>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-md-12">
+                <div class="skin-care-dry-content">
+                    <span class="sub-title"># Treatment Dry Skin</span>
+                    <h2>For Dry Skin & Born Face We Provide All The Treatments To The Patients</h2>
+                    <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Quisque velit nisi pretium ut lacinia in elementum id enim. Donec sollicitudin molestie malesuada.</p>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <ul class="list">
+                                <li><i class='bx bx-check'></i> Donec sollicitudin molestie malesuada.</li>
+                                <li><i class='bx bx-check'></i> Nulla porttitor accumsan tincidunt.</li>
+                                <li><i class='bx bx-check'></i> Donec rutrum congue leo malesuada.</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <ul class="list">
+                                <li><i class='bx bx-check'></i> Aliquam ullamcorper sit amet ligula.</li>
+                                <li><i class='bx bx-check'></i> Sed porttitor lectus nibh.</li>
+                                <li><i class='bx bx-check'></i> Pellentesque ipsum orci porta dapibus.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="dry-list">
+                        <li><img src="assets/images/skin-care/dry/image-1.jpg" class="rounded-circle" alt="image"></li>
+                        <li><img src="assets/images/skin-care/dry/image-2.jpg" class="rounded-circle" alt="image"></li>
+                        <li><img src="assets/images/skin-care/dry/image-3.jpg" class="rounded-circle" alt="image"></li>
+                        <li class="title">5k+ Positive Reviews</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <div class="skin-care-dry-image">
+                    <img src="assets/images/skin-care/dry/dry.png" alt="image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Popup -->
+<div class="video-popup" *ngIf="isOpen">
+    <div class="popup-inner">
+        <iframe src="https://www.youtube.com/embed/XNQk1qt__Vw" title="Setup and Local Installation - React Nextjs Online Yoga Coaching &amp; Training Courses System" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <button (click)="closePopup()" type="button" class="close-btn">
+            <i class='bx bx-x'></i>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div [dir]="lang" class="container">
+    <div
+        [ngClass]="
+            lang === 'ltr' ? 'section-title-warp' : 'section-title-warp-rtl'
+        "
+    >
+        <span class="sub-title">
+            <i class="flaticon-198-hashtag-1"></i>
+            {{ lang === "ltr" ? "Our Centers" : " مراكزنا " }}
+        </span>
+        <h2>
+            {{ lang === "ltr" ? "Advanced Centers" : "مراكزنا المتطورة" }}
+        </h2>
+        <a routerLink="/doctors" class="default-btn">
+            {{ lang === "ltr" ? "View All" : " عرض الكل " }}
+        </a>
+    </div>
+    <owl-carousel-o [options]="customOptions">
+        <ng-template *ngFor="let item of centers" carouselSlide>
+            <img [src]="item.image" alt="center image"
+        /></ng-template>
+    </owl-carousel-o>
+</div>
+
+<!-- <p>center-carousel works!</p> -->
