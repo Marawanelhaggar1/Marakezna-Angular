@@ -21,7 +21,6 @@ export class AppointmentComponent implements OnInit {
     form1 = true;
     form2 = false;
     searchForm!: FormGroup;
-    scanForm!: FormGroup;
     specialty: Specialization[] = [];
     doctors: Doctor[] = [];
     doctor: string[] = [];
@@ -59,11 +58,6 @@ export class AppointmentComponent implements OnInit {
             this.lang = 'ltr';
         }
 
-        if (this.lang == 'ltr') {
-            this.categories = ['Scan', 'Lab'];
-        } else {
-            this.categories = ['أشعة', 'معمل'];
-        }
         this.getSpecialties();
         this.getDoctor();
         this.getArea();
@@ -160,11 +154,9 @@ export class AppointmentComponent implements OnInit {
     getCenter() {
         console.log(this.searchForm.value);
         this.centers = [];
-        if (this.searchForm.value.area || this.scanForm.value.area) {
+        if (this.searchForm.value.area) {
             let a: Areas = this.area.find(
-                (a) =>
-                    a.name === this.searchForm.value.area ||
-                    a.name === this.scanForm.value.area
+                (a) => a.name === this.searchForm.value.area
             )!;
             console.log(a);
 
