@@ -1,7 +1,7 @@
 @import "../../common/dentists/dentists.component.scss";
 
 .page-banner-area {
-    background-color: var(--optional-color);
+    background-color: var(--main-color);
     .page-banner-content {
         // color: var(--white-color);
         h2,
@@ -25,7 +25,7 @@
         a {
             color: var(--white-color);
             &:hover {
-                color: var(--main-color);
+                color: var(--main-color2);
             }
         }
         &::before {

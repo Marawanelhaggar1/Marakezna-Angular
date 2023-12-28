@@ -208,7 +208,7 @@ h6 {
             top: 50%;
         }
         &.main-color {
-            background-color: var(--main-color2);
+            background-color: var(--main-color);
             color: var(--white-color);
 
             i {
@@ -1086,7 +1086,7 @@ h6 {
 
 // Page Banner
 .page-banner-area {
-    background-color: var(--optional-color);
+    background-color: var(--main-color);
 
     &.two {
         background-color: #eff8fb;
@@ -1183,7 +1183,7 @@ h6 {
                         color: var(--black-color);
 
                         &:hover {
-                            color: var(--main-color);
+                            color: var(--main-color2);
                         }
                     }
                 }
@@ -1240,7 +1240,7 @@ h6 {
                 color: var(--white-color);
 
                 &:hover {
-                    color: var(--main-color);
+                    color: var(--main-color2);
                 }
             }
         }

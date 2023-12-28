@@ -17,11 +17,7 @@
                 {{ lang === "ltr" ? "Our Doctors" : " أطبائنا " }}
             </span>
             <h2>
-                {{
-                    lang === "ltr"
-                        ? "Experienced Doctors"
-                        : "أطباء مستشفى روفان"
-                }}
+                {{ lang === "ltr" ? "Experienced Doctors" : "أطباء مراكزنا" }}
             </h2>
             <a routerLink="/doctors" class="default-btn">
                 {{ lang === "ltr" ? "View All" : " عرض الكل " }}
@@ -30,7 +26,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-doctor">
-                    <a routerLink="/dentist-details" class="d-block">
+                    <a class="d-block">
                         <img
                             src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-2.jpg"
                             alt="doctor-image"
@@ -38,7 +34,7 @@
                     </a>
                     <div class="doctor-content">
                         <h3>
-                            <a routerLink="/dentist-details">
+                            <a>
                                 {{
                                     lang === "ltr"
                                         ? " Dr. Johnson Melbourne"
@@ -58,7 +54,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-doctor">
-                    <a routerLink="/dentist-details" class="d-block">
+                    <a class="d-block">
                         <img
                             src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-5.jpg"
                             alt="doctor-image"
@@ -66,7 +62,7 @@
                     </a>
                     <div class="doctor-content">
                         <h3>
-                            <a routerLink="/dentist-details">
+                            <a>
                                 {{
                                     lang === "ltr"
                                         ? " Dr. Ena Dicrosa"
@@ -82,7 +78,7 @@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="single-doctor">
-                    <a routerLink="/dentist-details" class="d-block">
+                    <a class="d-block">
                         <img
                             src="https://angular.hibotheme.com/inba/assets/images/doctor/doctor-8.jpg"
                             alt="doctor-image"
@@ -90,7 +86,7 @@
                     </a>
                     <div class="doctor-content">
                         <h3>
-                            <a routerLink="/dentist-details">
+                            <a>
                                 {{
                                     lang === "ltr"
                                         ? "Dr. Addison Smith"
