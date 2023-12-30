@@ -60,15 +60,13 @@ export class BookAppointmentComponent {
         return this._doctorService.getSchedule(id).subscribe((data) => {
             this.schedule = data.data;
             console.log(this.schedule);
-            this.getTheDate(this.schedule.date);
-            // this.schedule.date = console.log(this.schedule);
+
             this.getDoctorById(this.schedule.doctor_id);
         });
     }
 
     getDoctorById(id: number) {
         return this._doctorService.getById(id).subscribe((data) => {
-            // console.log(data);
             this.doctor = data.data;
         });
     }
@@ -86,62 +84,62 @@ export class BookAppointmentComponent {
                 console.log(data);
             },
             error: (err) => {
-                this._router.navigate(['/login']);
+                // this._router.navigate(['/login']);
             },
         });
     }
 
-    getTheDate(targetDay: string) {
-        // Validate the target day input
-        const validDays =
-            this.lang == 'ltr'
-                ? [
-                      'Sunday',
-                      'Monday',
-                      'Tuesday',
-                      'Wednesday',
-                      'Thursday',
-                      'Friday',
-                      'Saturday',
-                  ]
-                : [
-                      'الأحد',
-                      'الأثنين',
-                      'الثلاثاء',
-                      'الأربعاء',
-                      'الخميس',
-                      'الجمعه',
-                      'السبت',
-                  ];
-        if (!validDays.includes(targetDay)) {
-            console.error(
-                'Invalid target day. Please provide a valid day name (e.g., Sunday, Monday, etc.).'
-            );
-            return;
-        }
+    // getTheDate(targetDay: string) {
+    //     // Validate the target day input
+    //     const validDays =
+    //         this.lang == 'ltr'
+    //             ? [
+    //                   'Sunday',
+    //                   'Monday',
+    //                   'Tuesday',
+    //                   'Wednesday',
+    //                   'Thursday',
+    //                   'Friday',
+    //                   'Saturday',
+    //               ]
+    //             : [
+    //                   'الأحد',
+    //                   'الأثنين',
+    //                   'الثلاثاء',
+    //                   'الأربعاء',
+    //                   'الخميس',
+    //                   'الجمعه',
+    //                   'السبت',
+    //               ];
+    //     if (!validDays.includes(targetDay)) {
+    //         console.error(
+    //             'Invalid target day. Please provide a valid day name (e.g., Sunday, Monday, etc.).'
+    //         );
+    //         return;
+    //     }
 
-        // Get the current date
-        const today = new Date();
+    //     // Get the current date
+    //     const today = new Date();
 
-        // Calculate the next occurrence of the target day
-        const targetIndex = validDays.indexOf(targetDay);
-        const nextOccurrence = new Date(today);
-        nextOccurrence.setDate(
-            today.getDate() + ((targetIndex + 7 - today.getDay()) % 7)
-        );
-        console.log(nextOccurrence);
-        // Format the date as "dd/mm/yyyy"
-        const options: any = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        };
-        const formattedDate = nextOccurrence.toLocaleDateString(
-            'zh-Hans-CN',
-            options
-        );
-        this.schedule.date = formattedDate;
-    }
+    //     // Calculate the next occurrence of the target day
+    //     const targetIndex = validDays.indexOf(targetDay);
+    //     const nextOccurrence = new Date(today);
+    //     nextOccurrence.setDate(
+    //         today.getDate() + ((targetIndex + 7 - today.getDay()) % 7)
+    //     );
+    //     console.log(nextOccurrence);
+    //     // Format the date as "dd/mm/yyyy"
+    //     const options: any = {
+    //         year: 'numeric',
+    //         month: '2-digit',
+    //         day: '2-digit',
+    //     };
+    //     const formattedDate = nextOccurrence.toLocaleDateString(
+    //         'zh-Hans-CN',
+    //         options
+    //     );
+    //     this.schedule.date = formattedDate;
+    // }
 
     public resolved(captchaResponse: string): void {
         console.log(`Resolved captcha with response: ${captchaResponse}`);
