@@ -9,6 +9,7 @@ export interface Doctor {
     address: string;
     title: string;
     rating: string;
+    waiting: number;
     image: string;
     health_center: {
         id: string;

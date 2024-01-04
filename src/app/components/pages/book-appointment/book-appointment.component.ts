@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecaptchaErrorParameters } from 'ng-recaptcha';
+import { CookieService } from 'ngx-cookie-service';
 import { Doctor } from 'src/app/core/models/doctor';
+import { UserService } from 'src/app/core/services/auth-services.service';
 import { BookingService } from 'src/app/core/services/booking.service';
 import { DoctorService } from 'src/app/core/services/doctor.service';
 
@@ -18,6 +20,7 @@ export class BookAppointmentComponent {
     schedule: any;
     doctor!: Doctor;
     scheduleId!: number;
+    user!: any;
     siteKey = '6LdICtkoAAAAAD6AtUM08O4U-DS_5HIVfSY__Py3';
 
     constructor(
@@ -25,13 +28,16 @@ export class BookAppointmentComponent {
         private _formBuilder: FormBuilder,
         private _ActivatedRoute: ActivatedRoute,
         private _doctorService: DoctorService,
-        private _bookingService: BookingService
+        private _bookingService: BookingService,
+        private _userService: UserService,
+        private _Cookie: CookieService
     ) {
         this.appointmentForm = this._formBuilder.group({
             patient_name: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
             phone: ['', [Validators.required]],
             payment: ['', [Validators.required]],
+            time: ['', [Validators.required]],
         });
     }
 
@@ -45,6 +51,7 @@ export class BookAppointmentComponent {
 
     ngOnInit() {
         // this.getTheDate();
+        // this.getUser();
         if (localStorage.getItem('lang')) {
             this.lang = JSON.parse(localStorage.getItem('lang')!);
         } else {
@@ -54,6 +61,7 @@ export class BookAppointmentComponent {
             this.scheduleId = params['id'];
             this.getScheduleById(this.scheduleId);
         });
+        this.getUser();
     }
 
     getScheduleById(id: number) {
@@ -76,6 +84,7 @@ export class BookAppointmentComponent {
             doctor_id: this.doctor.id,
             date: this.schedule.date,
             status: 'submitted',
+            user_id: this.user.id,
             ...this.appointmentForm.value,
         };
         console.log(booking);
@@ -86,6 +95,14 @@ export class BookAppointmentComponent {
             error: (err) => {
                 // this._router.navigate(['/login']);
             },
+        });
+    }
+
+    getUser() {
+        // console.log(this._Cookie.get('user'));
+        return this._userService.get().subscribe((data) => {
+            console.log(data);
+            this.user = data;
         });
     }
 

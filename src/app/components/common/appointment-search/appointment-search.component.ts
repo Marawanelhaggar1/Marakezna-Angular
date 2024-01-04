@@ -31,6 +31,10 @@ export class AppointmentSearchComponent {
     area: Areas[] = [];
     centers: string[] = [];
     center: Centers[] = [];
+    // labs: string[] = [];
+    // lab: Centers[] = [];
+    // scans: string[] = [];
+    // scan: Centers[] = [];
     docId?: number;
     CenterId?: number;
     specialtyId?: number;
@@ -164,7 +168,7 @@ export class AppointmentSearchComponent {
     }
 
     getCenter() {
-        console.log(this.searchForm.value);
+        // console.log(this.searchForm.value);
         this.centers = [];
         if (this.searchForm.value.area || this.scanForm.value.area) {
             let a: Areas = this.area.find(
@@ -195,6 +199,85 @@ export class AppointmentSearchComponent {
         }
     }
 
+    getLabsOrScans() {
+        if (this.scanForm.value.category && this.scanForm.value.area) {
+            let a: Areas = this.area.find(
+                (a) => a.name === this.scanForm.value.area
+            )!;
+            if (
+                this.scanForm.value.category == 'Scan' ||
+                this.scanForm.value.category == 'أشعة'
+            ) {
+                this.getScanByArea(a.id);
+            } else if (
+                this.scanForm.value.category == 'Lab' ||
+                this.scanForm.value.category == 'معمل'
+            ) {
+                this.getLabsByArea(a.id);
+            }
+        } else if (this.scanForm.value.category) {
+            if (
+                this.scanForm.value.category == 'Scan' ||
+                this.scanForm.value.category == 'أشعة'
+            ) {
+                this.getScans();
+            } else if (
+                this.scanForm.value.category == 'Lab' ||
+                this.scanForm.value.category == 'معمل'
+            ) {
+                this.getLabs();
+            }
+        } else {
+            this.getCenter();
+        }
+    }
+
+    getLabs() {
+        this.centers = [];
+        return this._centerService.getLabs().subscribe((labs) => {
+            this.center = labs.data;
+            console.log(this.center);
+            for (const cen of this.center) {
+                this.centers.push(cen.name);
+            }
+        });
+    }
+
+    getLabsByArea(id: number) {
+        this.centers = [];
+        return this._centerService.getLabsByArea(id).subscribe((labs) => {
+            this.center = labs.data;
+            console.log(this.center);
+            for (const cen of this.center) {
+                this.centers.push(cen.name);
+            }
+        });
+    }
+
+    getScans() {
+        this.centers = [];
+        return this._centerService.getScans().subscribe((scans) => {
+            this.center = scans.data;
+            console.log(this.center);
+
+            for (const cen of this.center) {
+                this.centers.push(cen.name);
+            }
+        });
+    }
+
+    getScanByArea(id: number) {
+        this.centers = [];
+        console.log(this.center);
+
+        return this._centerService.getScansByArea(id).subscribe((scans) => {
+            this.center = scans.data;
+            for (const cen of this.center) {
+                this.centers.push(cen.name);
+            }
+        });
+    }
+
     setScan() {
         let area = this.area.find((i) => i.name === this.scanForm.value.area);
 
@@ -202,8 +285,8 @@ export class AppointmentSearchComponent {
             return i.name === this.scanForm.value.center;
         });
         // console.log(this.center);
-        this.getCenter();
-
+        // this.getCenter();
+        this.getLabsOrScans();
         this.areaId = area?.id;
         this.CenterId = cen?.id;
 

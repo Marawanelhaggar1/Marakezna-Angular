@@ -11,7 +11,7 @@ export class UserService {
     constructor(private _Http: HttpClient, private _Cookie: CookieService) {}
 
     get(): Observable<User> {
-        return this._Http.get<User>('http://pp.etqanis.com/public/api/user', {
+        return this._Http.get<User>('https://pp.etqanis.com/public/api/user', {
             headers: {
                 Authorization:
                     'Bearer ' + JSON.parse(this._Cookie.get('user')).data.token,
@@ -21,21 +21,21 @@ export class UserService {
 
     login(body: any): Observable<User> {
         return this._Http.post<User>(
-            'http://pp.etqanis.com/public/api/auth/login',
+            'https://pp.etqanis.com/public/api/auth/login',
             body
         );
     }
 
     register(body: any): Observable<User> {
         return this._Http.post<User>(
-            'http://pp.etqanis.com/public/api/auth/register',
+            'https://pp.etqanis.com/public/api/auth/register',
             body
         );
     }
 
     google(body: any): Observable<User> {
         return this._Http.post<User>(
-            'http://pp.etqanis.com/public/api/auth/google',
+            'https://pp.etqanis.com/public/api/auth/google',
             body
         );
     }

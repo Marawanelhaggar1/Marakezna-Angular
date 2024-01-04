@@ -18,25 +18,25 @@ export class DoctorService {
     }
     get(): Observable<{ data: Doctor[] }> {
         return this._http.get<{ data: Doctor[] }>(
-            `http://pp.etqanis.com/public/api/doctors?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctors?lang=${this.lang}`
         );
     }
 
     getById(id: number): Observable<{ data: Doctor }> {
         return this._http.get<{ data: Doctor }>(
-            `http://pp.etqanis.com/public/api/doctors/${id}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctors/${id}?lang=${this.lang}`
         );
     }
 
     getByCenter(centerId: number): Observable<{ data: Doctor[] }> {
         return this._http.get<{ data: Doctor[] }>(
-            `http://pp.etqanis.com/public/api/doctors/center/${centerId}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctors/center/${centerId}?lang=${this.lang}`
         );
     }
 
     getBySpecialty(specialtyId: number): Observable<{ data: Doctor[] }> {
         return this._http.get<{ data: Doctor[] }>(
-            `http://pp.etqanis.com/public/api/doctors/specialty/${specialtyId}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctors/specialty/${specialtyId}?lang=${this.lang}`
         );
     }
 
@@ -45,19 +45,19 @@ export class DoctorService {
         specialtyId: number
     ): Observable<{ data: Doctor[] }> {
         return this._http.get<{ data: Doctor[] }>(
-            `http://pp.etqanis.com/public/api/doctors/${centerId}/${specialtyId}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctors/${centerId}/${specialtyId}?lang=${this.lang}`
         );
     }
 
     getDoctorSchedule(id: number): Observable<{ data: any[] }> {
         return this._http.get<{ data: any[] }>(
-            `http://pp.etqanis.com/public/api/doctor/schedule/doc/${id}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctor/schedule/doc/${id}?lang=${this.lang}`
         );
     }
 
     getSchedule(id: number): Observable<{ data: any }> {
         return this._http.get<{ data: any[] }>(
-            `http://pp.etqanis.com/public/api/doctor/schedule/${id}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/doctor/schedule/${id}?lang=${this.lang}`
         );
     }
 }

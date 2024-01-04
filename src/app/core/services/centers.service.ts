@@ -18,19 +18,43 @@ export class CentersService {
     }
     get(): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `http://pp.etqanis.com/public/api/center?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/center?lang=${this.lang}`
         );
     }
 
     getById(id: number): Observable<{ data: Centers }> {
         return this._http.get<{ data: Centers }>(
-            `http://pp.etqanis.com/public/api/center/${id}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/center/${id}?lang=${this.lang}`
         );
     }
 
     getByArea(areaId: number): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `http://pp.etqanis.com/public/api/center/area/${areaId}?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/center/area/${areaId}?lang=${this.lang}`
+        );
+    }
+
+    getLabs(): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://pp.etqanis.com/public/api/center/category/lab?lang=${this.lang}`
+        );
+    }
+
+    getScans(): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://pp.etqanis.com/public/api/center/category/scan?lang=${this.lang}`
+        );
+    }
+
+    getLabsByArea(id: number): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://pp.etqanis.com/public/api/center/category/lab/area/${id}?lang=${this.lang}`
+        );
+    }
+
+    getScansByArea(id: number): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://pp.etqanis.com/public/api/center/category/scan/area/${id}?lang=${this.lang}`
         );
     }
 }

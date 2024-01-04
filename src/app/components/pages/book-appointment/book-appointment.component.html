@@ -32,8 +32,12 @@
                     <p>
                         {{
                             lang === "ltr"
-                                ? "Wating Period is 20 Minutes"
-                                : "مدة الانتظار : ٢٠ دقيقة"
+                                ? "Waiting Period is " +
+                                  doctor.waiting +
+                                  " Minutes"
+                                : "مدة الانتظار  : " +
+                                  doctor.waiting +
+                                  " دقيقة "
                         }}
                     </p>
                 </div>
@@ -56,7 +60,7 @@
                         formControlName="patient_name"
                         class="form-control"
                         [placeholder]="
-                            lang === 'ltr' ? 'Last Name' : 'اسم العائلة'
+                            lang === 'ltr' ? 'Patient Name' : 'اسم المريض'
                         "
                     />
                 </div>
@@ -81,6 +85,30 @@
                             lang === 'ltr' ? 'Mobile Number' : 'رقم هاتفك'
                         "
                     />
+                </div>
+                <div class="form-group">
+                    <!-- <label>{{ lang === "ltr" ? " Gender" : "الجنس" }}</label> -->
+                    <select
+                        formControlName="time"
+                        aria-placeholder="Select Gender"
+                    >
+                        <option value="" selected>
+                            {{ lang === "ltr" ? " Select Time" : "اختر الوقت" }}
+                        </option>
+                        <option
+                            *ngFor="let item of schedule.times"
+                            [value]="item"
+                        >
+                            {{ item }}
+                        </option>
+
+                        <!-- <option value="male">
+                            {{ lang === "ltr" ? "Male" : "رجل" }}
+                        </option>
+                        <option value="female">
+                            {{ lang === "ltr" ? " Female" : "أمرأة" }}
+                        </option> -->
+                    </select>
                 </div>
                 <div class="form-group text-start">
                     <label class="payment-label">{{

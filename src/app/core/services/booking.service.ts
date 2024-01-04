@@ -19,7 +19,7 @@ export class BookingService {
 
     postBooking(body: Booking): Observable<Booking> {
         return this._http.post<Booking>(
-            `http://pp.etqanis.com/public/api/booking`,
+            `https://pp.etqanis.com/public/api/booking`,
             body,
             {
                 headers: {

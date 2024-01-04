@@ -18,7 +18,7 @@ export class AreaService {
     }
     get(): Observable<{ data: Areas[] }> {
         return this._http.get<{ data: Areas[] }>(
-            `http://pp.etqanis.com/public/api/area?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/area?lang=${this.lang}`
         );
     }
 }

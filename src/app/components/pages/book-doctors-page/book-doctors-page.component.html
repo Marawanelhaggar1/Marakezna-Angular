@@ -100,8 +100,12 @@
                         <p>
                             {{
                                 lang === "ltr"
-                                    ? "Wating Period is 20 Minutes"
-                                    : "مدة الانتظار : ٢٠ دقيقة"
+                                    ? "Waiting Period is " +
+                                      doc.waiting +
+                                      " Minutes "
+                                    : " مدة الانتظار : " +
+                                      doc.waiting +
+                                      "  دقيقة "
                             }}
                         </p>
                     </div>

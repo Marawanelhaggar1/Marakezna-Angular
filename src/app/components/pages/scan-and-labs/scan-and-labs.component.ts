@@ -73,20 +73,78 @@ export class ScanAndLabsComponent {
     }
 
     getCenterById(id: number) {
-        this.centers = [];
+        // this.centers = [];
         return this._centerServices.getById(id).subscribe((data) => {
             this.center = data.data;
-            this.centers.push(this.center);
+            // this.centers.push(this.center);
+        });
+    }
+
+    getLabs() {
+        // this.centers = [];
+        return this._centerServices.getLabs().subscribe((labs) => {
+            this.centers = labs.data;
+            console.log(this.centers);
+        });
+    }
+
+    getLabsByArea(id: number) {
+        // this.centers = [];
+        return this._centerServices.getLabsByArea(id).subscribe((labs) => {
+            this.centers = labs.data;
+            console.log(this.center);
+        });
+    }
+
+    getScans() {
+        // this.centers = [];
+        return this._centerServices.getScans().subscribe((scans) => {
+            this.centers = scans.data;
+            console.log(this.center);
+        });
+    }
+
+    getScanByArea(id: number) {
+        // this.centers = [];
+        console.log(this.center);
+
+        return this._centerServices.getScansByArea(id).subscribe((scans) => {
+            this.centers = scans.data;
         });
     }
 
     getCenters() {
-        if (this.sub.area) {
-            return this._centerServices
+        if (this.sub.area && this.sub.category) {
+            console.log('cat and area');
+            if (this.sub.category == 'Scan' || this.sub.category == 'أشعة') {
+                this.getScanByArea(this.sub.area);
+            } else if (
+                this.sub.category == 'Lab' ||
+                this.sub.category == 'معمل'
+            ) {
+                this.getLabsByArea(this.sub.area);
+            }
+        } else if (this.sub.category) {
+            console.log('cat ');
+
+            if (this.sub.category == 'Scan' || this.sub.category == 'أشعة') {
+                this.getScans();
+            } else if (
+                this.sub.category == 'Lab' ||
+                this.sub.category == 'معمل'
+            ) {
+                this.getLabs();
+            }
+        } else if (this.sub.area) {
+            console.log(' area');
+
+            this._centerServices
                 .getByArea(this.sub.area)
                 .subscribe((data) => (this.centers = data.data));
         } else {
-            return this._centerServices.get().subscribe({
+            console.log('all');
+
+            this._centerServices.get().subscribe({
                 next: (data) => {
                     this.centers = data.data;
                 },
