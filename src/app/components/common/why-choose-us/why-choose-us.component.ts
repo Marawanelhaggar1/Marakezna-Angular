@@ -4,15 +4,19 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-why-choose-us',
     templateUrl: './why-choose-us.component.html',
-    styleUrls: ['./why-choose-us.component.scss']
+    styleUrls: ['./why-choose-us.component.scss'],
 })
 export class WhyChooseUsComponent implements OnInit {
+    lang?: string;
+    constructor(public router: Router) {}
 
-    constructor(
-        public router: Router
-    ) { }
-
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (localStorage.getItem('lang')) {
+            this.lang = JSON.parse(localStorage.getItem('lang')!);
+        } else {
+            this.lang = 'ltr';
+        }
+    }
 
     // Video Popup
     isOpen = false;
@@ -22,5 +26,4 @@ export class WhyChooseUsComponent implements OnInit {
     closePopup(): void {
         this.isOpen = false;
     }
-
 }

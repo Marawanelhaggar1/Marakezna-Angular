@@ -8,9 +8,7 @@
             "
         >
             <h2>
-                {{
-                    lang === "ltr" ? "Best Labs in Egypt" : "أحسن معامل فى مصر"
-                }}
+                {{ title }}
             </h2>
             <ul class="pages-list">
                 <li>
@@ -34,19 +32,19 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6" *ngFor="let cen of centers">
                 <div class="single-doctor">
-                    <a routerLink="/doctors-details" class="d-block">
+                    <a class="d-block">
                         <img [src]="cen.image" alt="doctor-image" />
                     </a>
                     <div class="doctor-content">
                         <h3>
-                            <a routerLink="/doctors-details">{{ cen.name }}</a>
+                            <a>{{ cen.name }}</a>
                         </h3>
                         <div class="buttons">
-                            <a class="call" href="tel:19381">
+                            <a class="call" [href]="'tel:' + cen.phone">
                                 <i class="bx bxs-phone-call"></i>
                                 {{ lang === "ltr" ? "Call Us" : "أنصل بنا" }}
                             </a>
-                            <a class="whatsapp">
+                            <a [href]="cen.whatsApp" class="whatsapp">
                                 <i class="bx bx-chat"></i>
                                 {{
                                     lang === "ltr"

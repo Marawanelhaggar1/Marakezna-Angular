@@ -87,10 +87,9 @@
                     />
                 </div>
                 <div class="form-group">
-                    <!-- <label>{{ lang === "ltr" ? " Gender" : "الجنس" }}</label> -->
                     <select
                         formControlName="time"
-                        aria-placeholder="Select Gender"
+                        aria-placeholder="Select Time"
                     >
                         <option value="" selected>
                             {{ lang === "ltr" ? " Select Time" : "اختر الوقت" }}
@@ -101,13 +100,6 @@
                         >
                             {{ item }}
                         </option>
-
-                        <!-- <option value="male">
-                            {{ lang === "ltr" ? "Male" : "رجل" }}
-                        </option>
-                        <option value="female">
-                            {{ lang === "ltr" ? " Female" : "أمرأة" }}
-                        </option> -->
                     </select>
                 </div>
                 <div class="form-group text-start">

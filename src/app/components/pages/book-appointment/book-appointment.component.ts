@@ -50,8 +50,6 @@ export class BookAppointmentComponent {
     }
 
     ngOnInit() {
-        // this.getTheDate();
-        // this.getUser();
         if (localStorage.getItem('lang')) {
             this.lang = JSON.parse(localStorage.getItem('lang')!);
         } else {
