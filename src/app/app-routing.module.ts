@@ -45,6 +45,7 @@ import { AppointmentSearchComponent } from './components/common/appointment-sear
 import { BookDoctorsPageComponent } from './components/pages/book-doctors-page/book-doctors-page.component';
 import { BookAppointmentComponent } from './components/pages/book-appointment/book-appointment.component';
 import { ScanAndLabsComponent } from './components/pages/scan-and-labs/scan-and-labs.component';
+import { CenterDetailsComponent } from './components/pages/center-details/center-details.component';
 
 const routes: Routes = [
     { path: '', component: HomeDemoOneComponent },
@@ -80,6 +81,7 @@ const routes: Routes = [
         component: BookDoctorsPageComponent,
     },
     { path: 'scanAndLabs', component: ScanAndLabsComponent },
+    { path: 'center/:id', component: CenterDetailsComponent },
     { path: 'services-4', component: ServicesPageFourComponent },
     { path: 'services-5', component: ServicesPageFiveComponent },
     { path: 'services-6', component: ServicesPageSixComponent },

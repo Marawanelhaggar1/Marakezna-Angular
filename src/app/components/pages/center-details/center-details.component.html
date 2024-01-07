@@ -1,0 +1,57 @@
+<div
+    [dir]="lang"
+    [ngClass]="lang === 'ltr' ? 'page-banner-area' : 'page-banner-area-rtl '"
+    class="ptb-100"
+>
+    <div class="container">
+        <div
+            [ngClass]="
+                lang === 'ltr'
+                    ? 'page-banner-content'
+                    : 'page-banner-content-rtl '
+            "
+        >
+            <h2>
+                {{ lang === "ltr" ? " Center Details" : "معلومات عن المركز" }}
+            </h2>
+            <ul class="pages-list">
+                <li>
+                    <a href="index.html">{{
+                        lang === "ltr" ? " Home" : "الرئيسيه"
+                    }}</a>
+                </li>
+                <li>
+                    {{
+                        lang === "ltr" ? " Center Details" : "معلومات عن المركز"
+                    }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div [dir]="lang" class="container">
+    <div class="health">
+        <div class="image">
+            <img [src]="center?.image" alt="center logo" />
+        </div>
+        <div class="content">
+            <h3>{{ center?.name }}</h3>
+            <p>{{ center?.description }}</p>
+            <p class="location">
+                <i class="bx bx-location-plus"></i> {{ center?.address }}
+            </p>
+
+            <div class="buttons">
+                <a class="call" [href]="'tel:' + center?.phone">
+                    <i class="bx bxs-phone-call"></i>
+                    {{ lang === "ltr" ? "Call Us" : "أنصل بنا" }}
+                </a>
+                <a [href]="center?.whatsApp" class="whatsapp">
+                    <i class="bx bx-chat"></i>
+                    {{ lang === "ltr" ? "Chat With Us" : "تحدث معنا" }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

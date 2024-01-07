@@ -1,0 +1,84 @@
+.page-banner-content-rtl {
+    h2 {
+        color: var(--white-color);
+    }
+    .pages-list {
+        padding-left: 0px;
+    }
+    li {
+        color: var(--white-color);
+
+        a {
+            color: var(--white-color);
+            &:hover {
+                color: var(--main-color2);
+            }
+        }
+        &::before {
+            color: var(--white-color);
+        }
+    }
+}
+
+.health {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+
+    margin: 3rem 0;
+
+    .image {
+        width: 100%;
+        img {
+            width: 100%;
+        }
+    }
+
+    .content {
+    }
+
+    .buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+
+        a {
+            width: 200px;
+            padding: 1rem 0;
+            // padding: 0.5rem 2rem;
+            border-radius: 15px;
+        }
+
+        .call {
+            background-color: var(--paragraph-color);
+            color: var(--white-color);
+            &:hover {
+                background-color: var(--main-color);
+            }
+        }
+
+        .whatsapp {
+            background-color: var(--main-color);
+            color: white;
+            &:hover {
+                background-color: #128c7e;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .health {
+        flex-direction: column;
+
+        .buttons {
+            a {
+                width: 100px;
+                font-size: smaller;
+            }
+        }
+    }
+}
