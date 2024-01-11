@@ -15,6 +15,8 @@ export interface Doctor {
         id: string;
         name: string;
     };
+    phone: string;
+    whatsApp: string;
     doctorSchedule: {
         id: number;
         date: string;

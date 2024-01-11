@@ -66,7 +66,7 @@
                     </p>
                 </div>
 
-                <div class="ratings">
+                <!-- <div class="ratings">
                     <i class="bx bxs-star"></i>
                     <i class="bx bxs-star"></i>
                     <i class="bx bxs-star"></i>
@@ -80,7 +80,7 @@
                                 : "التقييم العام من ١٢٣٢ شخص"
                         }}
                     </p>
-                </div>
+                </div> -->
 
                 <div class="doctor-info">
                     <div class="info">
@@ -111,36 +111,15 @@
                     </div>
                 </div>
             </div>
-            <div class="date">
-                <owl-carousel-o [options]="customOptions" dir="ltr">
-                    <ng-template
-                        *ngFor="let item of doc.doctorSchedule; index as i"
-                        carouselSlide
-                    >
-                        <div
-                            class="dates-card"
-                            [routerLink]="['/book-appointment', item.id]"
-                        >
-                            <p class="date-banner">{{ item.date }}</p>
-                            <p class="dates">
-                                {{
-                                    lang === "ltr"
-                                        ? "From " +
-                                          item.start_time +
-                                          " To " +
-                                          item.end_time
-                                        : " من" +
-                                          item.start_time +
-                                          " الى" +
-                                          item.end_time
-                                }}
-                            </p>
-                            <button type="button">
-                                {{ lang === "ltr" ? "Book" : "أحجز" }}
-                            </button>
-                        </div>
-                    </ng-template>
-                </owl-carousel-o>
+            <div class="buttons">
+                <a class="call" [href]="'tel:' + doc?.phone">
+                    <i class="bx bxs-phone-call"></i>
+                    {{ lang === "ltr" ? "Request A Call" : "أطلب مكالمة" }}
+                </a>
+                <a [href]="doc?.whatsApp" class="whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    {{ lang === "ltr" ? "Chat With Us" : "تحدث معنا" }}
+                </a>
             </div>
         </div>
     </div>

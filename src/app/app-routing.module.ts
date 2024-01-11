@@ -46,6 +46,7 @@ import { BookDoctorsPageComponent } from './components/pages/book-doctors-page/b
 import { BookAppointmentComponent } from './components/pages/book-appointment/book-appointment.component';
 import { ScanAndLabsComponent } from './components/pages/scan-and-labs/scan-and-labs.component';
 import { CenterDetailsComponent } from './components/pages/center-details/center-details.component';
+import { CentersComponent } from './components/pages/centers/centers.component';
 
 const routes: Routes = [
     { path: '', component: HomeDemoOneComponent },
@@ -80,6 +81,7 @@ const routes: Routes = [
         path: 'book-doctor',
         component: BookDoctorsPageComponent,
     },
+    { path: 'centers', component: CentersComponent },
     { path: 'scanAndLabs', component: ScanAndLabsComponent },
     { path: 'center/:id', component: CenterDetailsComponent },
     { path: 'services-4', component: ServicesPageFourComponent },

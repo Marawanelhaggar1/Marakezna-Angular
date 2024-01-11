@@ -1,0 +1,35 @@
+// @import "../../common/services/services.component.scss";
+@import "../dentists-page/dentists-page.component.scss";
+.page-banner-content-rtl {
+    h2 {
+        color: var(--white-color);
+    }
+    .pages-list {
+        padding-left: 0px;
+    }
+    li {
+        color: var(--white-color);
+
+        a {
+            color: var(--white-color);
+            &:hover {
+                color: var(--main-color2);
+            }
+        }
+        &::before {
+            color: var(--white-color);
+        }
+    }
+}
+
+.default-btn {
+    margin-top: 3rem;
+    color: var(--main-color);
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+
+    &:hover {
+        color: var(--white-color);
+        background-color: var(--main-color);
+    }
+}

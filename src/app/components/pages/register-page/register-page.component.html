@@ -31,12 +31,11 @@
             <p>
                 {{ lang === "ltr" ? " Join Us Now" : "انضم الينا ألان" }}
             </p>
-            <div class="m-4">
+            <div class="google">
                 <asl-google-signin-button
                     type="standard"
                     size="large"
                     theme="filled_blue"
-                    width="399px"
                 ></asl-google-signin-button>
             </div>
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">

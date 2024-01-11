@@ -172,6 +172,38 @@
                 }
             }
         }
+
+        .buttons {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+
+            a {
+                width: 200px;
+                padding: 1rem 0;
+                // padding: 0.5rem 2rem;
+                border-radius: 15px;
+            }
+
+            .call {
+                background-color: var(--paragraph-color);
+                color: var(--white-color);
+                &:hover {
+                    background-color: var(--main-color);
+                }
+            }
+
+            .whatsapp {
+                background-color: var(--main-color);
+                color: white;
+                &:hover {
+                    background-color: #128c7e;
+                }
+            }
+        }
     }
 }
 @media only screen and (max-width: 1000px) {
@@ -180,6 +212,15 @@
         gap: 2rem;
         .image {
             align-self: center !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .buttons {
+        a {
+            width: 120px !important;
+            font-size: smaller;
         }
     }
 }

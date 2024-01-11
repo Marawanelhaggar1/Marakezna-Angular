@@ -115,6 +115,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { CenterCarouselComponent } from './components/common/center-carousel/center-carousel.component';
 import { ScanAndLabsComponent } from './components/pages/scan-and-labs/scan-and-labs.component';
 import { CenterDetailsComponent } from './components/pages/center-details/center-details.component';
+import { CentersComponent } from './components/pages/centers/centers.component';
 
 @NgModule({
     declarations: [
@@ -202,6 +203,7 @@ import { CenterDetailsComponent } from './components/pages/center-details/center
         CenterCarouselComponent,
         ScanAndLabsComponent,
         CenterDetailsComponent,
+        CentersComponent,
     ],
     imports: [
         BrowserModule,

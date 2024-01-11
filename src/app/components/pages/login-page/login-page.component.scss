@@ -148,6 +148,13 @@
     }
 }
 
+.google {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
 .login-form-rtl {
     padding: 50px;
     max-width: 600px;
