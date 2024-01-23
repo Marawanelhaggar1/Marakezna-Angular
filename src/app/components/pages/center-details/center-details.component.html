@@ -38,14 +38,15 @@
         <div class="content">
             <h3>{{ center?.name }}</h3>
             <p>{{ center?.description }}</p>
+            <p>{{ center?.description2 }}</p>
             <p class="location">
                 <i class="bx bx-location-plus"></i> {{ center?.address }}
             </p>
 
             <div class="buttons">
-                <a class="call" [href]="'tel:' + center?.phone">
+                <a class="call" (click)="postService({ center_id: centerId })">
                     <i class="bx bxs-phone-call"></i>
-                    {{ lang === "ltr" ? "Call Us" : "أنصل بنا" }}
+                    {{ lang === "ltr" ? "Request Call" : "أطلب الأتصال بنا" }}
                 </a>
                 <a [href]="center?.whatsApp" class="whatsapp">
                     <i class="fa-brands fa-whatsapp"></i>

@@ -8,9 +8,11 @@ import {
 // import { Router,  } from '@angular/router';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Booking } from 'src/app/core/models/booking';
 import { Centers } from 'src/app/core/models/centers';
 import { Doctor } from 'src/app/core/models/doctor';
 import { Specialization } from 'src/app/core/models/specialization';
+import { BookingService } from 'src/app/core/services/booking.service';
 import { CentersService } from 'src/app/core/services/centers.service';
 import { DoctorService } from 'src/app/core/services/doctor.service';
 import { SpecializationService } from 'src/app/core/services/specialization.service';
@@ -50,7 +52,8 @@ export class BookDoctorsPageComponent {
         private _specialtyService: SpecializationService,
         private _centerService: CentersService,
         private _router: Router,
-        private _doctorService: DoctorService
+        private _doctorService: DoctorService,
+        private _bookingService: BookingService
     ) {}
 
     ngOnInit() {
@@ -140,6 +143,8 @@ export class BookDoctorsPageComponent {
                 );
             }
         });
+
+        console.log(this.doctors);
     }
 
     areParamsEqual(params1: any, params2: any): boolean {
@@ -193,6 +198,8 @@ export class BookDoctorsPageComponent {
             this.doctors = [];
 
             this.doctors = data.data;
+
+            console.log(this.doctors);
         });
     }
 
@@ -238,5 +245,17 @@ export class BookDoctorsPageComponent {
 
             console.log(doc);
         }
+    }
+
+    postCall(body: any) {
+        return this._bookingService.requestCall(body).subscribe({
+            next: (data) => {
+                console.log(data);
+                alert('request Sent');
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 }

@@ -8,6 +8,7 @@ export interface Centers {
     };
     image: string;
     description: string;
+    description2: string;
     whatsApp: string;
     phone: string;
 }

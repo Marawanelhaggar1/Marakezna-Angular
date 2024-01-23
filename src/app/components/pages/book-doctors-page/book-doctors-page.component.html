@@ -112,11 +112,14 @@
                 </div>
             </div>
             <div class="buttons">
-                <a class="call" [href]="'tel:' + doc?.phone">
+                <a
+                    class="call"
+                    (click)="postCall({ center_id: doc.health_center.id })"
+                >
                     <i class="bx bxs-phone-call"></i>
                     {{ lang === "ltr" ? "Request A Call" : "أطلب مكالمة" }}
                 </a>
-                <a [href]="doc?.whatsApp" class="whatsapp">
+                <a [href]="doc?.health_center?.whatsApp" class="whatsapp">
                     <i class="fa-brands fa-whatsapp"></i>
                     {{ lang === "ltr" ? "Chat With Us" : "تحدث معنا" }}
                 </a>

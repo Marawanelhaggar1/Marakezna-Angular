@@ -28,4 +28,16 @@ export class BookingService {
             }
         );
     }
+
+    requestCall(body: any): Observable<Booking> {
+        return this._http.post<Booking>(
+            `https://pp.etqanis.com/public/api/center/calls`,
+            body,
+            {
+                headers: {
+                    Authorization: 'Bearer ' + this.token,
+                },
+            }
+        );
+    }
 }

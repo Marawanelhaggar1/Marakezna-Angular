@@ -6,6 +6,7 @@ import {
     Router,
 } from '@angular/router';
 import { Centers } from 'src/app/core/models/centers';
+import { BookingService } from 'src/app/core/services/booking.service';
 import { CentersService } from 'src/app/core/services/centers.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class ScanAndLabsComponent {
     constructor(
         private _centerServices: CentersService,
         private _ActivatedRoute: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
+        private _bookingService: BookingService
     ) {}
 
     ngOnInit(): void {
@@ -172,5 +174,17 @@ export class ScanAndLabsComponent {
                 },
             });
         }
+    }
+
+    postService(body: any) {
+        return this._bookingService.requestCall(body).subscribe({
+            next: (data) => {
+                console.log(data);
+                alert('request Sent');
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 }

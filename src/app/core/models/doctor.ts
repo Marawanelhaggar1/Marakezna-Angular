@@ -14,6 +14,8 @@ export interface Doctor {
     health_center: {
         id: string;
         name: string;
+        phone: string;
+        whatsApp: string;
     };
     phone: string;
     whatsApp: string;

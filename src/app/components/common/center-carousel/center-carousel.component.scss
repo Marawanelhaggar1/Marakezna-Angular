@@ -5,6 +5,10 @@
     gap: 1rem;
     justify-content: center;
     margin: 1rem;
+
+    img {
+        height: 300px;
+    }
     .default-btn {
         margin-top: 5px;
         color: var(--main-color);

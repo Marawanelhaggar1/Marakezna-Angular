@@ -40,9 +40,16 @@
                             <a>{{ cen.name }}</a>
                         </h3>
                         <div class="buttons">
-                            <a class="call" [href]="'tel:' + cen.phone">
+                            <a
+                                class="call"
+                                (click)="postService({ center_id: cen.id })"
+                            >
                                 <i class="bx bxs-phone-call"></i>
-                                {{ lang === "ltr" ? "Call Us" : "أنصل بنا" }}
+                                {{
+                                    lang === "ltr"
+                                        ? "Request Call"
+                                        : "أطلب الأتصال بنا"
+                                }}
                             </a>
                             <a [href]="cen.whatsApp" class="whatsapp">
                                 <i class="fa-brands fa-whatsapp"></i>

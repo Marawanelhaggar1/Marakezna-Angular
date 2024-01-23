@@ -49,6 +49,8 @@
         a {
             width: 200px;
             padding: 1rem 0;
+            cursor: pointer;
+
             // padding: 0.5rem 2rem;
             border-radius: 15px;
         }
@@ -56,6 +58,8 @@
         .call {
             background-color: var(--paragraph-color);
             color: var(--white-color);
+            cursor: pointer;
+
             &:hover {
                 background-color: var(--main-color);
             }

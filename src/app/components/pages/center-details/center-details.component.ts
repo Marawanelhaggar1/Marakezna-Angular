@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Centers } from 'src/app/core/models/centers';
+import { BookingService } from 'src/app/core/services/booking.service';
 import { CentersService } from 'src/app/core/services/centers.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class CenterDetailsComponent {
 
     constructor(
         private _ActivatedRoutes: ActivatedRoute,
-        private _centerService: CentersService
+        private _centerService: CentersService,
+        private _bookingService: BookingService
     ) {}
 
     ngOnInit(): void {
@@ -35,6 +37,18 @@ export class CenterDetailsComponent {
         return this._centerService.getById(id).subscribe((data) => {
             this.center = data.data;
             console.log(this.center);
+        });
+    }
+
+    postService(body: any) {
+        return this._bookingService.requestCall(body).subscribe({
+            next: (data) => {
+                console.log(data);
+                alert('request Sent');
+            },
+            error: (err) => {
+                console.error(err);
+            },
         });
     }
 }

@@ -19,9 +19,9 @@
         <ng-template *ngFor="let item of centers" carouselSlide>
             <div class="health-center">
                 <img [src]="item.image" alt="center image" />
-                <a [routerLink]="['/center', item.id]" class="default-btn">
+                <!-- <a [routerLink]="['/center', item.id]" class="default-btn">
                     {{ lang === "ltr" ? " Read More" : "أقرأ المزيد" }}
-                </a>
+                </a> -->
             </div>
         </ng-template>
     </owl-carousel-o>
