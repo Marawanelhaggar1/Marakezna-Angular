@@ -37,7 +37,7 @@
                 <h4>
                     {{ lang === "ltr" ? "All Specialities" : "كل التخصصات" }}
                 </h4>
-                <span> {{ lang === "ltr" ? "2 Doctors" : "٢ طبيب" }}</span>
+                <span> {{ doctors.length }} Doctor</span>
             </div>
             <div class="sort">
                 <label>{{ lang === "ltr" ? "Sort :" : "رتب :" }} </label>
@@ -111,7 +111,39 @@
                     </div>
                 </div>
             </div>
-            <div class="buttons">
+
+            <div *ngIf="!doc.appointment" class="date">
+                <owl-carousel-o [options]="customOptions" dir="ltr">
+                    <ng-template
+                        *ngFor="let item of doc.doctorSchedule; index as i"
+                        carouselSlide
+                    >
+                        <div
+                            class="dates-card"
+                            [routerLink]="['/book-appointment', item.id]"
+                        >
+                            <p class="date-banner">{{ item.date }}</p>
+                            <p class="dates">
+                                {{
+                                    lang === "ltr"
+                                        ? "From " +
+                                          item.start_time +
+                                          " To " +
+                                          item.end_time
+                                        : " من" +
+                                          item.start_time +
+                                          " الى" +
+                                          item.end_time
+                                }}
+                            </p>
+                            <button type="button">
+                                {{ lang === "ltr" ? "Book" : "أحجز" }}
+                            </button>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+            <div *ngIf="doc.appointment" class="buttons">
                 <a
                     class="call"
                     (click)="postCall({ center_id: doc.health_center.id })"

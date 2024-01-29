@@ -113,6 +113,7 @@ export class BookDoctorsPageComponent {
             console.log('get doctor');
             this.getDoctor();
         }
+        this.formatDate();
 
         // this._ActivatedRoute.paramMap.subscribe((params) => {
         //     // Perform any desired logic when the params change

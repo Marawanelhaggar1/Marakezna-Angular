@@ -37,7 +37,7 @@ export class BookAppointmentComponent {
             email: ['', [Validators.required, Validators.email]],
             phone: ['', [Validators.required]],
             payment: ['', [Validators.required]],
-            time: ['', [Validators.required]],
+            time: ['00:00', [Validators.required]],
         });
     }
 
@@ -91,7 +91,7 @@ export class BookAppointmentComponent {
                 console.log(data);
             },
             error: (err) => {
-                // this._router.navigate(['/login']);
+                this._router.navigate(['/login']);
             },
         });
     }

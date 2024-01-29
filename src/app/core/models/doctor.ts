@@ -11,6 +11,8 @@ export interface Doctor {
     rating: string;
     waiting: number;
     image: string;
+    appointment: boolean;
+    featured: boolean;
     health_center: {
         id: string;
         name: string;
