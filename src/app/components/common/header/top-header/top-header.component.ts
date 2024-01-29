@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Settings } from 'src/app/core/models/settings';
 import { User } from 'src/app/core/models/user';
+import { SettingsService } from 'src/app/core/services/settings.service';
 
 @Component({
     selector: 'app-top-header',
@@ -11,8 +13,13 @@ import { User } from 'src/app/core/models/user';
 export class TopHeaderComponent implements OnInit {
     user?: User | null;
     lang?: string;
+    setting?: Settings;
 
-    constructor(public router: Router, public _cookie: CookieService) {}
+    constructor(
+        public router: Router,
+        public _cookie: CookieService,
+        private _settingService: SettingsService
+    ) {}
 
     ngOnInit(): void {
         if (localStorage.getItem('lang')) {
@@ -26,6 +33,19 @@ export class TopHeaderComponent implements OnInit {
         } else {
             this.user = null;
         }
+
+        this.getSettings();
+    }
+
+    getSettings() {
+        this._settingService.get().subscribe({
+            next: (data) => {
+                this.setting = data.data[data.data.length - 1];
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 
     setArabic() {

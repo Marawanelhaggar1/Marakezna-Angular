@@ -1,7 +1,9 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Settings } from 'src/app/core/models/settings';
 import { User } from 'src/app/core/models/user';
+import { SettingsService } from 'src/app/core/services/settings.service';
 
 @Component({
     selector: 'app-navbar',
@@ -11,19 +13,32 @@ import { User } from 'src/app/core/models/user';
 export class NavbarComponent implements OnInit {
     // user?: User | null;
     lang?: string;
-    constructor(public router: Router, public _cookie: CookieService) {}
+    setting?: Settings;
+    constructor(
+        public router: Router,
+        public _cookie: CookieService,
+        private _settingService: SettingsService
+    ) {}
 
     ngOnInit(): void {
-        // if (this._cookie.get('user')) {
-        //     this.user = JSON.parse(this._cookie.get('user'));
-        // } else {
-        //     this.user = null;
-        // }
         if (localStorage.getItem('lang')) {
             this.lang = JSON.parse(localStorage.getItem('lang')!);
         } else {
             this.lang = 'ltr';
         }
+
+        this.getSettings();
+    }
+
+    getSettings() {
+        this._settingService.get().subscribe({
+            next: (data) => {
+                this.setting = data.data[data.data.length - 1];
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 
     switcherClassApplied = false;

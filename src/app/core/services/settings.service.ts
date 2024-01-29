@@ -18,7 +18,7 @@ export class SettingsService {
     }
     get(): Observable<{ data: Settings[] }> {
         return this._http.get<{ data: Settings[] }>(
-            `https://pp.etqanis.com/public/api/web/settings?lang=${this.lang}`
+            `https://pp.etqanis.com/public/api/web/setting?lang=${this.lang}`
         );
     }
 }

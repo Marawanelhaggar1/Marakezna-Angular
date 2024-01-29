@@ -10,22 +10,34 @@
                     <li>
                         <i class="bx bxs-phone"></i>
                         <span
-                            ><a href="tel:19381">{{
-                                lang === "ltr" ? "19381" : "١٩٣٨١ "
+                            ><a [href]="'tel:' + setting?.phone">{{
+                                setting?.phone
                             }}</a></span
                         >
                     </li>
                     <li class="social">
-                        <a href="https://www.facebook.com" target="_blank">
+                        <a
+                            *ngIf="setting?.facebook"
+                            [href]="setting?.facebook"
+                            target="_blank"
+                        >
                             <i class="bx bxl-facebook"></i>
                         </a>
-                        <a href="https://twitter.com/?lang=en" target="_blank">
+                        <!-- <a href="https://twitter.com/?lang=en" target="_blank">
                             <i class="bx bxl-twitter"></i>
-                        </a>
-                        <a href="https://www.linkedin.com" target="_blank">
+                        </a> -->
+                        <a
+                            *ngIf="setting?.linkedin"
+                            [href]="setting?.linkedin"
+                            target="_blank"
+                        >
                             <i class="bx bxl-linkedin"></i>
                         </a>
-                        <a href="https://www.instagram.com" target="_blank">
+                        <a
+                            *ngIf="setting?.instagram"
+                            [href]="setting?.instagram"
+                            target="_blank"
+                        >
                             <i class="bx bxl-instagram"></i>
                         </a>
                     </li>

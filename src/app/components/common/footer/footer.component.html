@@ -11,10 +11,7 @@
                 >
                     <h2>
                         <a routerLink="/">
-                            <img
-                                src="../../../../assets/images/footerLogo.jpg"
-                                alt=""
-                            />
+                            <img [src]="setting?.footerLogo" alt="" />
                         </a>
                     </h2>
                 </div>
@@ -200,8 +197,8 @@
                             <i class="flaticon-039-emergency-call"></i>
                             {{ lang === "ltr" ? "Call Today" : " اتصل اليوم " }}
                             <span
-                                ><a href="tel:19381">{{
-                                    lang === "ltr" ? "19381" : "١٩٣٨١ "
+                                ><a [href]="'tel:' + setting?.phone">{{
+                                    setting?.phone
                                 }}</a></span
                             >
                         </li>
@@ -215,13 +212,7 @@
                         <li>
                             <i class="flaticon-041-placeholder"></i>
                             {{ lang === "ltr" ? "Our Location" : "عنوانا" }}
-                            <span>
-                                {{
-                                    lang === "ltr"
-                                        ? " El Nada Clinics Complex, Beverly Hills ,Sodic west 3"
-                                        : "مجمع عيادات الندى، بيفرلي هيلز، سوديك ويست 3"
-                                }}</span
-                            >
+                            <span> {{ setting?.address }}</span>
                         </li>
                     </ul>
                 </div>

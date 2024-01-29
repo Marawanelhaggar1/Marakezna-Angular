@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Settings } from 'src/app/core/models/settings';
+import { SettingsService } from 'src/app/core/services/settings.service';
 
 @Component({
     selector: 'app-footer',
@@ -8,7 +10,12 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
     lang?: string;
-    constructor(public router: Router) {}
+    setting?: Settings;
+
+    constructor(
+        public router: Router,
+        private _settingService: SettingsService
+    ) {}
 
     ngOnInit(): void {
         if (localStorage.getItem('lang')) {
@@ -16,5 +23,17 @@ export class FooterComponent implements OnInit {
         } else {
             this.lang = 'ltr';
         }
+        this.getSettings();
+    }
+
+    getSettings() {
+        this._settingService.get().subscribe({
+            next: (data) => {
+                this.setting = data.data[data.data.length - 1];
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 }
