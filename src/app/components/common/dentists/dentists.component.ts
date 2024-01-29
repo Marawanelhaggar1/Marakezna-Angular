@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
+import { Doctor } from 'src/app/core/models/doctor';
+import { DoctorService } from 'src/app/core/services/doctor.service';
 
 @Component({
     selector: 'app-dentists',
@@ -9,8 +11,9 @@ import { Router } from '@angular/router';
 })
 export class DentistsComponent implements OnInit {
     lang?: string;
+    doctors!: Doctor[];
 
-    constructor(public router: Router) {}
+    constructor(public router: Router, private _doctorService: DoctorService) {}
 
     ngOnInit(): void {
         if (localStorage.getItem('lang')) {
@@ -18,9 +21,21 @@ export class DentistsComponent implements OnInit {
         } else {
             this.lang = 'ltr';
         }
+        this.getDoctors();
     }
 
-    dentistsSlides: OwlOptions = {
+    getDoctors() {
+        return this._doctorService.getFeatured().subscribe({
+            next: (data) => {
+                this.doctors = data.data;
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
+    }
+
+    customOptions: OwlOptions = {
         nav: false,
         margin: 25,
         loop: true,

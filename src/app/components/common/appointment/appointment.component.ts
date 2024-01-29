@@ -4,10 +4,12 @@ import { Router } from '@angular/router';
 import { Areas } from 'src/app/core/models/areas';
 import { Centers } from 'src/app/core/models/centers';
 import { Doctor } from 'src/app/core/models/doctor';
+import { Settings } from 'src/app/core/models/settings';
 import { Specialization } from 'src/app/core/models/specialization';
 import { AreaService } from 'src/app/core/services/area.service';
 import { CentersService } from 'src/app/core/services/centers.service';
 import { DoctorService } from 'src/app/core/services/doctor.service';
+import { SettingsService } from 'src/app/core/services/settings.service';
 import { SpecializationService } from 'src/app/core/services/specialization.service';
 
 @Component({
@@ -34,6 +36,7 @@ export class AppointmentComponent implements OnInit {
     CenterId?: number;
     specialtyId?: number;
     areaId?: number;
+    setting?: Settings;
 
     constructor(
         private _formBuilder: FormBuilder,
@@ -41,7 +44,8 @@ export class AppointmentComponent implements OnInit {
         private _specializations: SpecializationService,
         private _doctorService: DoctorService,
         private _areaService: AreaService,
-        private _centerService: CentersService
+        private _centerService: CentersService,
+        private _settingsService: SettingsService
     ) {
         this.searchForm = _formBuilder.group({
             area: ['', [Validators.required]],
@@ -62,6 +66,18 @@ export class AppointmentComponent implements OnInit {
         this.getDoctor();
         this.getArea();
         this.getCenter();
+        this.getSettings();
+    }
+
+    getSettings() {
+        this._settingsService.get().subscribe({
+            next: (data) => {
+                this.setting = data.data[data.data.length - 1];
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 
     getSpecialties() {

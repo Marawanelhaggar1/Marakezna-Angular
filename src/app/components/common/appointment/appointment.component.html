@@ -12,9 +12,9 @@
                             <i class="flaticon-039-emergency-call"></i>
                             {{ lang === "ltr" ? "Call Today" : "اتصل اليوم" }}
                             <span>
-                                <a href="tel:19381">
-                                    {{ lang === "ltr" ? "+19381" : "١٩٣٨١+ " }}
-                                </a>
+                                <a [href]="'tel:' + setting?.phone">{{
+                                    setting?.phone
+                                }}</a>
                             </span>
                         </div>
                         <p>

@@ -25,9 +25,9 @@
                                 : "اتصل بنا اليوم"
                         }}
 
-                        <a href="tel:19381">
-                            {{ lang === "ltr" ? "+19381" : "١٩٣٨١+ " }}</a
-                        >
+                        <a [href]="'tel:' + setting?.phone">{{
+                            setting?.phone
+                        }}</a>
                     </p>
                 </div>
             </div>
