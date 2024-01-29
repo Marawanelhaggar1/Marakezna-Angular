@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { About } from 'src/app/core/models/about';
+import { AboutService } from 'src/app/core/services/about.service';
 
 @Component({
     selector: 'app-why-choose-us',
@@ -8,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class WhyChooseUsComponent implements OnInit {
     lang?: string;
-    constructor(public router: Router) {}
+    about!: About;
+    constructor(public router: Router, private _aboutService: AboutService) {}
 
     ngOnInit(): void {
         if (localStorage.getItem('lang')) {
@@ -16,6 +19,19 @@ export class WhyChooseUsComponent implements OnInit {
         } else {
             this.lang = 'ltr';
         }
+
+        this.getAbout();
+    }
+
+    getAbout() {
+        return this._aboutService.get().subscribe({
+            next: (data) => {
+                this.about = data.data[data.data.length - 1];
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 
     // Video Popup

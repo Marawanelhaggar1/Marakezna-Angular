@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Settings } from '../models/settings';
 import { Observable } from 'rxjs';
+import { About } from '../models/about';
 
 @Injectable({
     providedIn: 'root',
 })
-export class SettingsService {
+export class AboutService {
     lang: string;
 
     constructor(private _http: HttpClient) {
@@ -16,9 +16,9 @@ export class SettingsService {
             this.lang = 'En';
         }
     }
-    get(): Observable<{ data: Settings[] }> {
-        return this._http.get<{ data: Settings[] }>(
-            `https://pp.etqanis.com/public/api/web/settings?lang=${this.lang}`
+    get(): Observable<{ data: About[] }> {
+        return this._http.get<{ data: About[] }>(
+            `https://pp.etqanis.com/public/api/about/us?lang=${this.lang}`
         );
     }
 }
