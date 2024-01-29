@@ -21,11 +21,7 @@
                             }}
                         </h3>
                         <p>
-                            {{
-                                lang === "ltr"
-                                    ? " El Nada Clinics Complex, Beverly Hills ,Sodic west 3"
-                                    : "مجمع عيادات الندى، بيفرلي هيلز، سوديك ويست 3"
-                            }}
+                            {{ setting?.address }}
                         </p>
                     </div>
                     <div class="shape">
@@ -56,8 +52,8 @@
                             }}
                         </h3>
                         <p>
-                            <a href="mailto:info@marakezna.com"
-                                >info@marakezna.com
+                            <a [href]="'mailto:' + setting?.email"
+                                >{{ setting?.email }}
                             </a>
                         </p>
                     </div>
@@ -89,8 +85,8 @@
                             }}
                         </h3>
                         <p>
-                            <a href="tel:19381">{{
-                                lang === "ltr" ? "19381" : "١٩٣٨١ "
+                            <a [href]="'tel:' + setting?.phone">{{
+                                setting?.phone
                             }}</a>
                         </p>
                     </div>

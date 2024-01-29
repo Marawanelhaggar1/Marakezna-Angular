@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Settings } from 'src/app/core/models/settings';
+import { SettingsService } from 'src/app/core/services/settings.service';
 
 @Component({
     selector: 'app-contact-info',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactInfoComponent implements OnInit {
     lang?: string;
-    constructor() {}
+    setting?: Settings;
+    constructor(private _settingService: SettingsService) {}
 
     ngOnInit(): void {
         if (localStorage.getItem('lang')) {
@@ -15,5 +18,18 @@ export class ContactInfoComponent implements OnInit {
         } else {
             this.lang = 'ltr';
         }
+
+        this.getSettings();
+    }
+
+    getSettings() {
+        this._settingService.get().subscribe({
+            next: (data) => {
+                this.setting = data.data[data.data.length - 1];
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 }
