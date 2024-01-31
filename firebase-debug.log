@@ -1,0 +1,14 @@
+[debug] [2024-01-31T05:12:46.060Z] ----------------------------------------------------------------------
+[debug] [2024-01-31T05:12:46.064Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Marwan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-01-31T05:12:46.065Z] CLI Version:   7.0.0
+[debug] [2024-01-31T05:12:46.065Z] Platform:      win32
+[debug] [2024-01-31T05:12:46.065Z] Node Version:  v18.12.1
+[debug] [2024-01-31T05:12:46.067Z] Time:          Wed Jan 31 2024 07:12:46 GMT+0200 (توقيت شرق أوروبا الرسمي)
+[debug] [2024-01-31T05:12:46.067Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-01-31T05:12:46.175Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-01-31T05:12:46.176Z] > authorizing via signed-in user
+[debug] [2024-01-31T05:12:46.176Z] [iam] checking project marakezna for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-01-31T05:12:46.180Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2024-01-31T05:12:46.181Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>

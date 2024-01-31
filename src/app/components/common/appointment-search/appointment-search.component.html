@@ -1,10 +1,26 @@
 <div [dir]="lang" class="container">
     <div class="titles row">
-        <div (click)="showForm1()" class="button col-6">
+        <div
+            (click)="showForm1()"
+            [style]="
+                form1
+                    ? 'background-color: #f0eeee;'
+                    : 'background-color: white;'
+            "
+            class="button col-6"
+        >
             <i class="flaticon-084-calendar"></i>
             <p>{{ lang === "ltr" ? "  Clinic Visits " : " زيارة العياده " }}</p>
         </div>
-        <div (click)="showForm2()" class="button col-6">
+        <div
+            (click)="showForm2()"
+            [style]="
+                form2
+                    ? 'background-color: #f0eeee;'
+                    : 'background-color: white;'
+            "
+            class="button col-6"
+        >
             <i class="flaticon-065-microscope"></i>
             <p>{{ lang === "ltr" ? "  Scan&Lab " : "أشعة ومعامل" }}</p>
         </div>
