@@ -27,6 +27,8 @@ export class LoginPageComponent implements OnInit {
     socialUser!: SocialUser;
     isLoggedin: boolean = false;
     lang?: string;
+    alert?: string;
+    alertStatus!: string;
 
     constructor(
         private _userServices: UserService,
@@ -60,12 +62,19 @@ export class LoginPageComponent implements OnInit {
             this._userServices.login(this.loginForm.value).subscribe({
                 next: (res) => {
                     this.user = res;
-                    this._cookie.set('user', JSON.stringify(res));
-                    // console.log(this.user);
-                    this.sendToHome();
+                    console.log(res.data.token);
+                    if (res.data.token) {
+                        this._cookie.set('user', JSON.stringify(res));
+                        this.sendToHome();
+                    } else {
+                        this.alertStatus = 'danger';
+                        this.alert = 'wrong credentials';
+                    }
                 },
                 error: (err) => {
                     console.log(err);
+                    this.alertStatus = 'danger';
+                    this.alert = err.error.message;
                 },
             });
         } else {
@@ -78,12 +87,18 @@ export class LoginPageComponent implements OnInit {
             this._userServices.login(login).subscribe({
                 next: (res) => {
                     this.user = res;
-                    this._cookie.set('user', JSON.stringify(res));
-                    // console.log(this.user);
-                    this.sendToHome();
+                    if (res.data.token) {
+                        this._cookie.set('user', JSON.stringify(res));
+                        this.sendToHome();
+                    } else {
+                        this.alertStatus = 'danger';
+                        this.alert = 'wrong credentials';
+                    }
                 },
                 error: (err) => {
                     console.log(err);
+                    this.alertStatus = 'danger';
+                    this.alert = err.error.message;
                 },
             });
         }
@@ -95,6 +110,7 @@ export class LoginPageComponent implements OnInit {
             last_name: this.socialUser.lastName,
             email: this.socialUser.email,
             social_id: this.socialUser.id,
+            mobile: this.socialUser.firstName + this.socialUser.lastName,
         };
         console.log(googleUser);
         this._userServices.google(googleUser).subscribe({
@@ -105,6 +121,8 @@ export class LoginPageComponent implements OnInit {
             },
             error: (err) => {
                 console.log(err);
+                this.alertStatus = 'danger';
+                this.alert = err.error.message;
             },
         });
     }
@@ -113,7 +131,8 @@ export class LoginPageComponent implements OnInit {
         if (this.loginForm.valid) {
             this.login();
         } else {
-            alert('wrong credentials');
+            this.alertStatus = 'danger';
+            this.alert = 'wrong credentials';
         }
     }
 

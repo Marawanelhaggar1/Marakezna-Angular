@@ -30,6 +30,9 @@
 <div [dir]="lang" class="doctor-area pt-100 pb-75">
     <div class="container">
         <div class="row">
+            <alert [type]="alertStatus" *ngIf="alert">
+                <strong>Alert !</strong>{{ alert }}
+            </alert>
             <div class="col-lg-4 col-sm-6" *ngFor="let cen of centers">
                 <div class="single-doctor">
                     <a class="d-block">

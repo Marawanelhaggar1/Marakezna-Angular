@@ -19,6 +19,8 @@ export class ScanAndLabsComponent {
     centers: Centers[] = [];
     center?: Centers;
     sub!: any;
+    alert?: string;
+    alertStatus!: string;
     title?: string;
 
     constructor(
@@ -180,10 +182,13 @@ export class ScanAndLabsComponent {
         return this._bookingService.requestCall(body).subscribe({
             next: (data) => {
                 console.log(data);
-                alert('request Sent');
+                this.alertStatus = 'success';
+                this.alert = 'request Sent';
             },
             error: (err) => {
                 console.error(err);
+                this.alertStatus = 'danger';
+                this.alert = err;
             },
         });
     }

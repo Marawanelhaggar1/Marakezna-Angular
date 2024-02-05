@@ -141,9 +141,12 @@
                         [siteKey]="siteKey"
                     ></re-captcha>
                 </div>
-                <button type="submit" class="default-btn">
+                <button type="submit" class="default-btn mb-4">
                     {{ lang === "ltr" ? "Book an Appointment" : " أحجز الأن " }}
                 </button>
+                <alert [type]="alertStatus" *ngIf="alert">
+                    <strong>Alert !</strong>{{ alert }}
+                </alert>
             </form>
         </div>
     </div>

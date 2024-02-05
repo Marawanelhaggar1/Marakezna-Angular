@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import { CookieService } from 'ngx-cookie-service';
+// import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { Doctor } from 'src/app/core/models/doctor';
 import { UserService } from 'src/app/core/services/auth-services.service';
 import { BookingService } from 'src/app/core/services/booking.service';
@@ -15,6 +17,8 @@ import { DoctorService } from 'src/app/core/services/doctor.service';
 })
 export class BookAppointmentComponent {
     lang?: string;
+    alert?: string;
+    alertStatus!: string;
     appointmentForm: FormGroup;
     sub: any;
     schedule: any;
@@ -45,7 +49,8 @@ export class BookAppointmentComponent {
         if (this.appointmentForm.valid) {
             this.sendBooking();
         } else {
-            alert('Please enter valid Data');
+            this.alertStatus = 'warning';
+            this.alert = 'Please enter valid Data';
         }
     }
 
@@ -59,7 +64,6 @@ export class BookAppointmentComponent {
             this.scheduleId = params['id'];
             this.getScheduleById(this.scheduleId);
         });
-        this.getUser();
     }
 
     getScheduleById(id: number) {
@@ -78,6 +82,7 @@ export class BookAppointmentComponent {
     }
 
     sendBooking() {
+        this.getUser();
         let booking = {
             doctor_id: this.doctor.id,
             date: this.schedule.date,
@@ -88,20 +93,48 @@ export class BookAppointmentComponent {
         console.log(booking);
         return this._bookingService.postBooking(booking).subscribe({
             next: (data) => {
-                console.log(data);
+                this.alertStatus = 'success';
+                this.alert = 'Appointment Successfully Booked';
             },
             error: (err) => {
-                this._router.navigate(['/login']);
+                this.alertStatus = 'danger';
+                this.alert = err;
             },
         });
     }
 
     getUser() {
-        // console.log(this._Cookie.get('user'));
-        return this._userService.get().subscribe((data) => {
-            console.log(data);
-            this.user = data;
-        });
+        const userCookie = this._Cookie.get('user');
+
+        if (userCookie) {
+            const userData = JSON.parse(userCookie);
+            if (userData && userData.data && userData.data.token) {
+                // Proceed with the logic
+                console.log('g');
+                this._userService.get().subscribe({
+                    next: (data) => {
+                        console.log(data);
+                        this.user = data;
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    },
+                });
+            } else {
+                this.alertStatus = 'danger';
+                this.alert = 'Please Login First';
+                setTimeout(() => {
+                    this._router.navigate(['/login']);
+                }, 3000);
+            }
+        } else {
+            // Handle the case where the 'user' cookie doesn't exist
+            this.alertStatus = 'danger';
+            this.alert = 'Please Login First';
+            setTimeout(() => {
+                this._router.navigate(['/login']);
+            }, 3000);
+        }
     }
 
     // getTheDate(targetDay: string) {

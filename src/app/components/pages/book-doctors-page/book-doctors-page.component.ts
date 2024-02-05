@@ -46,6 +46,8 @@ export class BookDoctorsPageComponent {
 
     daysOfTheWeek!: string[];
     sub!: any;
+    alert?: string;
+    alertStatus!: string;
 
     constructor(
         private _ActivatedRoute: ActivatedRoute,
@@ -114,13 +116,6 @@ export class BookDoctorsPageComponent {
             this.getDoctor();
         }
         this.formatDate();
-
-        // this._ActivatedRoute.paramMap.subscribe((params) => {
-        //     // Perform any desired logic when the params change
-
-        //     // Reload the window
-        //     window.location.reload();
-        // });
 
         this._router.events.subscribe((event) => {
             if (event instanceof NavigationStart) {
@@ -201,6 +196,7 @@ export class BookDoctorsPageComponent {
             this.doctors = data.data;
 
             console.log(this.doctors);
+            this.formatDate();
         });
     }
 
@@ -252,10 +248,13 @@ export class BookDoctorsPageComponent {
         return this._bookingService.requestCall(body).subscribe({
             next: (data) => {
                 console.log(data);
-                alert('request Sent');
+                this.alertStatus = 'success';
+                this.alert = 'request Sent';
             },
             error: (err) => {
                 console.error(err);
+                this.alertStatus = 'danger';
+                this.alert = err;
             },
         });
     }

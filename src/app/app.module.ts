@@ -116,6 +116,7 @@ import { CenterCarouselComponent } from './components/common/center-carousel/cen
 import { ScanAndLabsComponent } from './components/pages/scan-and-labs/scan-and-labs.component';
 import { CenterDetailsComponent } from './components/pages/center-details/center-details.component';
 import { CentersComponent } from './components/pages/centers/centers.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
     declarations: [
@@ -211,6 +212,7 @@ import { CentersComponent } from './components/pages/centers/centers.component';
         CarouselModule,
         BrowserAnimationsModule,
         NgxScrollTopModule,
+        AlertModule.forRoot(),
         ModalModule.forRoot(),
         TabsModule.forRoot(),
         AccordionModule.forRoot(),

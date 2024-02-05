@@ -19,8 +19,8 @@ export class UserService {
         });
     }
 
-    login(body: any): Observable<User> {
-        return this._Http.post<User>(
+    login(body: any): Observable<any> {
+        return this._Http.post<any>(
             'https://pp.etqanis.com/public/api/auth/login',
             body
         );

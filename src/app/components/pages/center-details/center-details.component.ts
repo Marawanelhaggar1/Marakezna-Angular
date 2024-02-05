@@ -14,6 +14,8 @@ export class CenterDetailsComponent {
     center?: Centers;
     centerId!: number;
     sub?: any;
+    alert?: string;
+    alertStatus!: string;
 
     constructor(
         private _ActivatedRoutes: ActivatedRoute,
@@ -44,10 +46,13 @@ export class CenterDetailsComponent {
         return this._bookingService.requestCall(body).subscribe({
             next: (data) => {
                 console.log(data);
-                alert('request Sent');
+                this.alertStatus = 'success';
+                this.alert = 'request Sent';
             },
             error: (err) => {
                 console.error(err);
+                this.alertStatus = 'danger';
+                this.alert = err;
             },
         });
     }
