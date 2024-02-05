@@ -52,7 +52,7 @@ export class CenterDetailsComponent {
             error: (err) => {
                 console.error(err);
                 this.alertStatus = 'danger';
-                this.alert = err;
+                this.alert = err.error.message;
             },
         });
     }
