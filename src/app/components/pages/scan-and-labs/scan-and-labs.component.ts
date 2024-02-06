@@ -183,12 +183,18 @@ export class ScanAndLabsComponent {
             next: (data) => {
                 console.log(data);
                 this.alertStatus = 'success';
-                this.alert = 'request Sent';
+                this.alert =
+                    this.lang === 'ltr'
+                        ? 'request Sent'
+                        : 'تم أرسال طلبك بنجاح';
             },
             error: (err) => {
                 console.error(err);
                 this.alertStatus = 'danger';
-                this.alert = err.error.message;
+                this.alert =
+                    this.lang === 'ltr'
+                        ? 'Please Login First'
+                        : 'من فضلك سجل الدخول أولا';
             },
         });
     }

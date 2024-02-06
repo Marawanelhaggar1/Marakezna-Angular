@@ -94,6 +94,21 @@
                     />
                 </div>
                 <div class="form-group">
+                    <label>{{
+                        lang === "ltr" ? " WhatsApp Number" : "رقم الواتساب"
+                    }}</label>
+                    <input
+                        type="text"
+                        formControlName="whatsApp"
+                        class="form-control"
+                        [placeholder]="
+                            lang === 'ltr'
+                                ? ' WhatsApp Number if it is not the same as the mobile'
+                                : ' رقم الواتساب لو اختلف عن رقم الهاتف'
+                        "
+                    />
+                </div>
+                <div class="form-group">
                     <label>{{ lang === "ltr" ? " Gender" : "الجنس" }}</label>
                     <select
                         formControlName="gender"
@@ -126,6 +141,14 @@
                         "
                         bsDatepicker
                     />
+                </div>
+                <div class="form-group">
+                    <label>{{ lang === "ltr" ? " Address" : "العنوان" }}</label>
+                    <textarea
+                        formControlName="address"
+                        [placeholder]="lang === 'ltr' ? 'Address' : 'العنوان'"
+                        class="form-control"
+                    ></textarea>
                 </div>
                 <div class="form-group">
                     <label>{{
@@ -164,6 +187,7 @@
                             : "يجب أن تتكون كلمة المرور من ثمانية أحرف على الأقل. ولجعلها أقوى، استخدم الأحرف الكبيرة والصغيرة والأرقام والرموز مثل !  ؟ $ % ^ &amp; )"
                     }}
                 </p>
+
                 <button type="submit" class="default-btn">
                     {{ lang === "ltr" ? " Create Account" : "أنشئ حساب" }}
                 </button>
@@ -180,6 +204,9 @@
                         }}</a></span
                     >
                 </div>
+                <alert [type]="alertStatus" *ngIf="alert">
+                    <strong>Alert !</strong>{{ alert }}
+                </alert>
             </form>
         </div>
     </div>

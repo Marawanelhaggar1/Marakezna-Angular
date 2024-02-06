@@ -26,6 +26,8 @@ export class RegisterPageComponent implements OnInit {
     registerForm: FormGroup;
     user!: User;
     socialUser!: SocialUser;
+    alert?: string;
+    alertStatus!: string;
     isLoggedin: boolean = false;
 
     constructor(
@@ -44,6 +46,8 @@ export class RegisterPageComponent implements OnInit {
             date_of_birth: ['', [Validators.required]],
             gender: ['', [Validators.required]],
             mobile: ['', [Validators.required]],
+            whatsApp: [''],
+            address: [''],
             password: ['', [Validators.required]],
             password_confirmation: ['', [Validators.required]],
         });
@@ -76,10 +80,10 @@ export class RegisterPageComponent implements OnInit {
     onSubmit() {
         if (this.registerForm.valid) {
             this.checkDate();
-            console.log(this.registerForm.value.first_name);
+            // console.log(this.registerForm.value.first_name);
             // console.log(this.registerForm.value.date_of_birth);
             this.register();
-            console.log(this.registerForm.value);
+            // console.log(this.registerForm.value);
         } else {
             alert('please enter a valid registration');
         }
@@ -91,12 +95,15 @@ export class RegisterPageComponent implements OnInit {
             .subscribe({
                 next: (res) => {
                     this.user = res;
-                    this._router.navigate(['/login']);
-                    console.log(res);
+                    this._cookie.set('user', JSON.stringify(res));
+                    this.sendToHome();
+                    // console.log(res);
                 },
 
                 error: (err) => {
                     console.log(err);
+                    this.alertStatus = 'danger';
+                    this.alert = err.error.message;
                 },
             });
     }
@@ -107,6 +114,7 @@ export class RegisterPageComponent implements OnInit {
             last_name: this.socialUser.lastName,
             email: this.socialUser.email,
             social_id: this.socialUser.id,
+            mobile: this.socialUser.firstName + this.socialUser.lastName,
             role: 'user',
         };
         console.log(googleUser);
@@ -117,7 +125,8 @@ export class RegisterPageComponent implements OnInit {
                 console.log(res);
             },
             error: (err) => {
-                console.log(err);
+                this.alertStatus = 'danger';
+                this.alert = err.error.message;
             },
         });
     }

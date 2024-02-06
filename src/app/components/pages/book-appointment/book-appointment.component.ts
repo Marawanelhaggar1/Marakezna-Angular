@@ -50,7 +50,10 @@ export class BookAppointmentComponent {
             this.sendBooking();
         } else {
             this.alertStatus = 'warning';
-            this.alert = 'Please enter valid Data';
+            this.alert =
+                this.lang === 'ltr'
+                    ? 'Please enter valid Data'
+                    : 'أرجوك أدخل بيانات صحيحة';
         }
     }
 
@@ -94,11 +97,14 @@ export class BookAppointmentComponent {
         return this._bookingService.postBooking(booking).subscribe({
             next: (data) => {
                 this.alertStatus = 'success';
-                this.alert = 'Appointment Successfully Booked';
+                this.alert =
+                    this.lang === 'ltr'
+                        ? 'Appointment Successfully Booked'
+                        : 'تم الحجز بنجاح';
             },
             error: (err) => {
                 this.alertStatus = 'danger';
-                this.alert = err;
+                this.alert = err.error.message;
             },
         });
     }
@@ -122,7 +128,10 @@ export class BookAppointmentComponent {
                 });
             } else {
                 this.alertStatus = 'danger';
-                this.alert = 'Please Login First';
+                this.alert =
+                    this.lang === 'ltr'
+                        ? 'Please Login First'
+                        : 'من فضلك سجل الدخول أولا';
                 setTimeout(() => {
                     this._router.navigate(['/login']);
                 }, 3000);
@@ -130,7 +139,10 @@ export class BookAppointmentComponent {
         } else {
             // Handle the case where the 'user' cookie doesn't exist
             this.alertStatus = 'danger';
-            this.alert = 'Please Login First';
+            this.alert =
+                this.lang === 'ltr'
+                    ? 'Please Login First'
+                    : 'من فضلك سجل الدخول أولا';
             setTimeout(() => {
                 this._router.navigate(['/login']);
             }, 3000);

@@ -68,13 +68,19 @@ export class LoginPageComponent implements OnInit {
                         this.sendToHome();
                     } else {
                         this.alertStatus = 'danger';
-                        this.alert = 'wrong credentials';
+                        this.alert =
+                            this.lang === 'ltr'
+                                ? 'Wrong username or password'
+                                : 'اسم الحساب أو كلمه المرور خطأ';
                     }
                 },
                 error: (err) => {
                     console.log(err);
                     this.alertStatus = 'danger';
-                    this.alert = err.error.message;
+                    this.alert =
+                        this.lang === 'ltr'
+                            ? 'Wrong username or password'
+                            : 'اسم الحساب أو كلمه المرور خطأ';
                 },
             });
         } else {
@@ -92,13 +98,19 @@ export class LoginPageComponent implements OnInit {
                         this.sendToHome();
                     } else {
                         this.alertStatus = 'danger';
-                        this.alert = 'wrong credentials';
+                        this.alert =
+                            this.lang === 'ltr'
+                                ? 'Wrong username or password'
+                                : 'اسم الحساب أو كلمه المرور خطأ';
                     }
                 },
                 error: (err) => {
                     console.log(err);
                     this.alertStatus = 'danger';
-                    this.alert = err.error.message;
+                    this.alert =
+                        this.lang === 'ltr'
+                            ? 'Wrong username or password'
+                            : 'اسم الحساب أو كلمه المرور خطأ';
                 },
             });
         }
@@ -111,6 +123,7 @@ export class LoginPageComponent implements OnInit {
             email: this.socialUser.email,
             social_id: this.socialUser.id,
             mobile: this.socialUser.firstName + this.socialUser.lastName,
+            role: 'user',
         };
         console.log(googleUser);
         this._userServices.google(googleUser).subscribe({
@@ -132,7 +145,10 @@ export class LoginPageComponent implements OnInit {
             this.login();
         } else {
             this.alertStatus = 'danger';
-            this.alert = 'wrong credentials';
+            this.alert =
+                this.lang === 'ltr'
+                    ? 'Wrong username or password'
+                    : 'اسم الحساب أو كلمه المرور خطأ';
         }
     }
 
