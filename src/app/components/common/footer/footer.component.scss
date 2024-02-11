@@ -116,6 +116,7 @@
                     display: inline-block;
                     background: {
                         size: cover;
+                        color: white !important;
                         repeat: no-repeat;
                         position: center center;
                     }
@@ -352,6 +353,7 @@
                     background: {
                         size: cover;
                         repeat: no-repeat;
+                        color: white;
                         position: center center;
                     }
                 }

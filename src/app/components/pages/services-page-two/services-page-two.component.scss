@@ -21,18 +21,24 @@
     }
 }
 .single-services-box {
-    height: 450px;
+    height: 500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
 
     h3 {
-        height: 100px;
+        // height: 60px;
+    }
+
+    img {
+        // color: white;
+        background-color: white;
+        width: -webkit-fill-available;
     }
 
     p {
-        height: 120px;
+        height: 150px;
         margin-bottom: 10px;
     }
 

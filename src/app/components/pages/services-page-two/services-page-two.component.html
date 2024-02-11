@@ -30,25 +30,23 @@
             <div class="col-lg-4 col-md-6" *ngFor="let ser of services">
                 <div class="single-services-box">
                     <div class="icon">
-                        <i [ngClass]="ser.icon"></i>
+                        <!-- <i [ngClass]="ser.icon"></i> -->
+                        <img [src]="ser.icon" alt="" />
                     </div>
 
                     <h3>
-                        <a routerLink="/service-details">
-                            {{ lang === "ltr" ? ser.en : ser.ar }}
+                        <a>
+                            <!-- routerLink="/service-details" -->
+                            {{ ser.name }}
                         </a>
                     </h3>
                     <p>
-                        {{
-                            lang === "ltr"
-                                ? ser.descriptionEn
-                                : ser.descriptionAr
-                        }}
+                        {{ ser.description }}
                     </p>
 
-                    <a routerLink="/service-details" class="default-btn">
+                    <!-- <a routerLink="/service-details" class="default-btn">
                         {{ lang === "ltr" ? " Read More" : "أقرأ المزيد" }}
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>

@@ -47,13 +47,12 @@
             >
                 <div class="single-core-features">
                     <div class="icon">
-                        <i [ngClass]="item.icon"></i>
+                        <img [src]="item.icon" alt="" />
                     </div>
                     <h3>
-                        <a routerLink="/service-details">
-                            {{ lang === "ltr" ? item.en : item.ar }}</a
-                        >
+                        <a> {{ item.name }}</a>
                     </h3>
+                    <!-- routerLink="/service-details" -->
                     <!-- <p>
                         {{
                             lang === "ltr"

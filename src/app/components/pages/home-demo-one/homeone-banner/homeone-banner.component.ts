@@ -42,7 +42,7 @@ export class HomeoneBannerComponent implements OnInit {
     getSlides() {
         return this._slideService.get().subscribe((slid) => {
             this.slides = slid.data;
-            // console.log(this.slides);
+            console.log(this.slides);
 
             return this.slides;
         });

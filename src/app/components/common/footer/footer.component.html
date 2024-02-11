@@ -91,86 +91,27 @@
                 >
                     <h3>{{ lang === "ltr" ? "Services " : "خدمات" }}</h3>
                     <div class="footer-widget-blog">
-                        <article class="item">
-                            <a routerLink="/service-details" class="thumb">
+                        <article *ngFor="let ser of service" class="item">
+                            <a class="thumb">
                                 <span
                                     class="fullimage"
                                     role="img"
-                                    style="
-                                        background-image: url(https://angular.hibotheme.com/inba/assets/images/footer/footer-2.jpg);
+                                    [style.background-image]="
+                                        'url(' + ser.icon + ')'
                                     "
                                 ></span>
                             </a>
                             <div class="info">
-                                <span
+                                <!-- <span
                                     >{{ lang === "ltr" ? "By " : " بواسطة" }}
-                                    <a routerLink="/blog-grid">{{
+                                    <a >{{
                                         lang === "ltr"
                                             ? "Daisy Gabriela"
                                             : "تامر مصطفى "
                                     }}</a></span
-                                >
+                                > -->
                                 <h4>
-                                    <a routerLink="/service-details">{{
-                                        lang === "ltr"
-                                            ? "Dental Hygiene for Children"
-                                            : "صحة الأسنان للأطفال"
-                                    }}</a>
-                                </h4>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <a routerLink="/service-details" class="thumb">
-                                <span
-                                    class="fullimage"
-                                    role="img"
-                                    style="
-                                        background-image: url(https://angular.hibotheme.com/inba/assets/images/footer/footer-4.jpg);
-                                    "
-                                ></span>
-                            </a>
-                            <div class="info">
-                                <span
-                                    >{{ lang === "ltr" ? "By " : " بواسطة" }}
-                                    <a routerLink="/blog-grid">{{
-                                        lang === "ltr"
-                                            ? "Ronnie Aaron"
-                                            : "أحمد عبدالله"
-                                    }}</a></span
-                                >
-                                <h4>
-                                    <a routerLink="/service-details">{{
-                                        lang === "ltr"
-                                            ? "Regular Checkup for Good Health"
-                                            : "الفحص الدوري للصحة جيدة"
-                                    }}</a>
-                                </h4>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <a routerLink="/service-details" class="thumb">
-                                <span
-                                    class="fullimage"
-                                    role="img"
-                                    style="
-                                        background-image: url(https://angular.hibotheme.com/inba/assets/images/footer/footer-3.jpg);
-                                    "
-                                ></span>
-                            </a>
-                            <div class="info">
-                                <span>
-                                    <a routerLink="/blog-grid">{{
-                                        lang === "ltr"
-                                            ? "Babatunde Jon"
-                                            : "معز محمد"
-                                    }}</a></span
-                                >
-                                <h4>
-                                    <a routerLink="/service-details">{{
-                                        lang === "ltr"
-                                            ? "The Future Of Health"
-                                            : " مستقبل الصحة كمنظومة فى مصر"
-                                    }}</a>
+                                    <a>{{ ser.name }}</a>
                                 </h4>
                             </div>
                         </article>
