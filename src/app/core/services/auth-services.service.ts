@@ -39,4 +39,11 @@ export class UserService {
             body
         );
     }
+
+    forgot(body: any): Observable<User> {
+        return this._Http.post<User>(
+            'http://localhost:8000/public/api/auth/forget/password',
+            body
+        );
+    }
 }
