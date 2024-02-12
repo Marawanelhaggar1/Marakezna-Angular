@@ -18,13 +18,13 @@ export class SpecializationService {
     }
     get(): Observable<{ data: Specialization[] }> {
         return this._http.get<{ data: Specialization[] }>(
-            `https://pp.etqanis.com/public/api/specialization?lang=${this.lang}`
+            `https://marakezna.com/laravel/public/api/specialization?lang=${this.lang}`
         );
     }
 
     getById(id: number): Observable<{ data: Specialization }> {
         return this._http.get<{ data: Specialization }>(
-            `https://pp.etqanis.com/public/api/specialization/${id}?lang=${this.lang}`
+            `https://marakezna.com/laravel/public/api/specialization/${id}?lang=${this.lang}`
         );
     }
 }

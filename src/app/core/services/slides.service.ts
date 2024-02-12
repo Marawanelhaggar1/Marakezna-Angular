@@ -19,7 +19,7 @@ export class SlidesService {
 
     get(): Observable<{ data: Slides[] }> {
         return this._http.get<{ data: Slides[] }>(
-            `https://pp.etqanis.com/public/api/slides?lang=${this.lang}`
+            `https://marakezna.com/laravel/public/api/slides?lang=${this.lang}`
         );
     }
 }

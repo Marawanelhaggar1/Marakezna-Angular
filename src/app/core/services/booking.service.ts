@@ -19,7 +19,7 @@ export class BookingService {
 
     postBooking(body: Booking): Observable<Booking> {
         return this._http.post<Booking>(
-            `https://pp.etqanis.com/public/api/booking`,
+            `https://marakezna.com/laravel/public/api/booking`,
             body,
             {
                 headers: {
@@ -31,7 +31,7 @@ export class BookingService {
 
     requestCall(body: any): Observable<Booking> {
         return this._http.post<Booking>(
-            `https://pp.etqanis.com/public/api/center/calls`,
+            `https://marakezna.com/laravel/public/api/center/calls`,
             body,
             {
                 headers: {
