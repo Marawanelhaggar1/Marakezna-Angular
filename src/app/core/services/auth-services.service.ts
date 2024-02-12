@@ -42,7 +42,7 @@ export class UserService {
 
     forgot(body: any): Observable<User> {
         return this._Http.post<User>(
-            'http://localhost:8000/public/api/auth/forget/password',
+            'https://pp.etqanis.com/public/api/auth/forgot/password',
             body
         );
     }

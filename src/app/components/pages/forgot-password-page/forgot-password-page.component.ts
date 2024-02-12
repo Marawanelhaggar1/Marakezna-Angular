@@ -8,8 +8,10 @@ import { UserService } from 'src/app/core/services/auth-services.service';
     styleUrls: ['./forgot-password-page.component.scss'],
 })
 export class ForgotPasswordPageComponent implements OnInit {
+    lang?: string;
     forgetForm: FormGroup;
-
+    alert?: string;
+    alertStatus!: string;
     constructor(
         private _authService: UserService,
         private _formBuilder: FormBuilder
@@ -18,7 +20,13 @@ export class ForgotPasswordPageComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
         });
     }
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (localStorage.getItem('lang')) {
+            this.lang = JSON.parse(localStorage.getItem('lang')!);
+        } else {
+            this.lang = 'ltr';
+        }
+    }
 
     onSubmit() {
         if (this.forgetForm.valid) {
@@ -26,7 +34,9 @@ export class ForgotPasswordPageComponent implements OnInit {
             this.forgetPassword(this.forgetForm.value);
         } else {
             console.log(this.forgetForm.value);
-            alert('Please enter valid mail');
+            this.alertStatus = 'success';
+            this.alert =
+                this.lang === 'ltr' ? 'Enter A Valid Email' : ' بيانات خاطئه ';
         }
     }
 
@@ -34,9 +44,17 @@ export class ForgotPasswordPageComponent implements OnInit {
         return this._authService.forgot(body).subscribe({
             next: (data) => {
                 console.log(data);
+                this.alertStatus = 'success';
+                this.alert =
+                    this.lang === 'ltr'
+                        ? 'Email Sent Successfully'
+                        : 'تم ارسال أيميل على حسابك';
             },
             error: (data) => {
                 console.error(data);
+                this.alertStatus = 'success';
+                this.alert =
+                    this.lang === 'ltr' ? 'Wrong Email' : ' حسابك خاطئ';
             },
         });
     }
