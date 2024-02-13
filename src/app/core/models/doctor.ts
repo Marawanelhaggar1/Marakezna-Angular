@@ -18,7 +18,7 @@ export interface Doctor {
         name: string;
         phone: string;
         whatsApp: string;
-    };
+    }[];
     phone: string;
     whatsApp: string;
     doctorSchedule: {

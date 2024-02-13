@@ -147,12 +147,20 @@
                 <div class="buttons">
                     <a
                         class="call"
-                        (click)="postCall({ center_id: doc.health_center.id })"
+                        (click)="
+                            centerId
+                                ? postCall({
+                                      center_id: centerId
+                                  })
+                                : postCall({
+                                      center_id: doc.health_center[0].id
+                                  })
+                        "
                     >
                         <i class="bx bxs-phone-call"></i>
                         {{ lang === "ltr" ? "Request A Call" : "أطلب مكالمة" }}
                     </a>
-                    <a [href]="doc?.health_center?.whatsApp" class="whatsapp">
+                    <a [href]="doc.health_center[0]?.whatsApp" class="whatsapp">
                         <i class="fa-brands fa-whatsapp"></i>
                         {{ lang === "ltr" ? "Chat With Us" : "تحدث معنا" }}
                     </a>
