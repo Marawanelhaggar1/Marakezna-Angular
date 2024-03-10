@@ -7,6 +7,7 @@ export interface Centers {
         name: string;
     };
     image: string;
+    logo: string;
     description: string;
     description2: string;
     whatsApp: string;

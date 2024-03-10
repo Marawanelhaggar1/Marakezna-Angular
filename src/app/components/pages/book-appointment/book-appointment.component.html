@@ -102,6 +102,29 @@
                         </option>
                     </select>
                 </div> -->
+                <div class="form-group">
+                    <label>{{
+                        lang === "ltr" ? " Health Center" : "المركز الطبي"
+                    }}</label>
+                    <select
+                        formControlName="health_center_id"
+                        aria-placeholder="Select Health Center"
+                    >
+                        <option value="" selected>
+                            {{
+                                lang === "ltr"
+                                    ? " Select Health Center"
+                                    : "اختر المركز الطبى"
+                            }}
+                        </option>
+                        <option
+                            *ngFor="let item of doctor.health_center"
+                            [value]="item.id"
+                        >
+                            {{ item.name }}
+                        </option>
+                    </select>
+                </div>
                 <div class="form-group text-start">
                     <label class="payment-label">{{
                         lang === "ltr" ? "PayMent Method" : "طرق الدفع"
@@ -118,6 +141,7 @@
                             {{ lang === "ltr" ? "Insured" : "التأمين" }}
                         </label>
                     </div>
+
                     <div class="form-check">
                         <input
                             class="form-check-input"
@@ -145,7 +169,7 @@
                     {{ lang === "ltr" ? "Book an Appointment" : " أحجز الأن " }}
                 </button>
                 <alert [type]="alertStatus" *ngIf="alert">
-                    <strong>Alert !</strong>{{ alert }}
+                    <strong>Alert ! </strong>{{ " " + alert }}
                 </alert>
             </form>
         </div>

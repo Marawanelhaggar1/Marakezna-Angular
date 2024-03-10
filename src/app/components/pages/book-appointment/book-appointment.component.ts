@@ -41,6 +41,7 @@ export class BookAppointmentComponent {
             email: ['', [Validators.required, Validators.email]],
             phone: ['', [Validators.required]],
             payment: ['', [Validators.required]],
+            health_center_id: ['', [Validators.required]],
             time: ['00:00', [Validators.required]],
         });
     }
@@ -85,12 +86,12 @@ export class BookAppointmentComponent {
     }
 
     sendBooking() {
-        this.getUser();
+        // this.getUser();
         let booking = {
             doctor_id: this.doctor.id,
             date: this.schedule.date,
             status: 'submitted',
-            user_id: this.user.id,
+            // user_id: this.user.id,
             ...this.appointmentForm.value,
         };
         console.log(booking);
@@ -109,45 +110,45 @@ export class BookAppointmentComponent {
         });
     }
 
-    getUser() {
-        const userCookie = this._Cookie.get('user');
+    // getUser() {
+    //     const userCookie = this._Cookie.get('user');
 
-        if (userCookie) {
-            const userData = JSON.parse(userCookie);
-            if (userData && userData.data && userData.data.token) {
-                // Proceed with the logic
-                console.log('g');
-                this._userService.get().subscribe({
-                    next: (data) => {
-                        console.log(data);
-                        this.user = data;
-                    },
-                    error: (err) => {
-                        console.log(err);
-                    },
-                });
-            } else {
-                this.alertStatus = 'danger';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'Please Login First'
-                        : 'من فضلك سجل الدخول أولا';
-                setTimeout(() => {
-                    this._router.navigate(['/login']);
-                }, 3000);
-            }
-        } else {
-            // Handle the case where the 'user' cookie doesn't exist
-            this.alertStatus = 'danger';
-            this.alert =
-                this.lang === 'ltr'
-                    ? 'Please Login First'
-                    : 'من فضلك سجل الدخول أولا';
-            setTimeout(() => {
-                this._router.navigate(['/login']);
-            }, 3000);
-        }
-    }
+    //     if (userCookie) {
+    //         const userData = JSON.parse(userCookie);
+    //         if (userData && userData.data && userData.data.token) {
+    //             // Proceed with the logic
+    //             console.log('g');
+    //             this._userService.get().subscribe({
+    //                 next: (data) => {
+    //                     console.log(data);
+    //                     // this.user = data;
+    //                 },
+    //                 error: (err) => {
+    //                     console.log(err);
+    //                 },
+    //             });
+    //         } else {
+    //             this.alertStatus = 'danger';
+    //             this.alert =
+    //                 this.lang === 'ltr'
+    //                     ? 'Please Login First'
+    //                     : 'من فضلك سجل الدخول أولا';
+    //             setTimeout(() => {
+    //                 this._router.navigate(['/login']);
+    //             }, 3000);
+    //         }
+    //     } else {
+    //         // Handle the case where the 'user' cookie doesn't exist
+    //         this.alertStatus = 'danger';
+    //         this.alert =
+    //             this.lang === 'ltr'
+    //                 ? 'Please Login First'
+    //                 : 'من فضلك سجل الدخول أولا';
+    //         setTimeout(() => {
+    //             this._router.navigate(['/login']);
+    //         }, 3000);
+    //     }
+    // }
 
     // getTheDate(targetDay: string) {
     //     // Validate the target day input

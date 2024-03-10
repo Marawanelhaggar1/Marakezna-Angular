@@ -150,10 +150,12 @@
                         (click)="
                             centerId
                                 ? postCall({
-                                      center_id: centerId
+                                      center_id: centerId,
+                                      doctor_id: doc.id
                                   })
                                 : postCall({
-                                      center_id: doc.health_center[0].id
+                                      center_id: doc.health_center[0].id,
+                                      doctor_id: doc.id
                                   })
                         "
                     >

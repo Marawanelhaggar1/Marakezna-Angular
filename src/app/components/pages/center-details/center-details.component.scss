@@ -36,6 +36,18 @@
     }
 
     .content {
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+
+            img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+            }
+        }
     }
 
     .buttons {

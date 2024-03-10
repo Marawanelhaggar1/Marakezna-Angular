@@ -33,10 +33,14 @@
 <div [dir]="lang" class="container">
     <div class="health">
         <div class="image">
-            <img [src]="center?.image" alt="center logo" />
+            <img [src]="center?.image" alt="center" />
         </div>
         <div class="content">
-            <h3>{{ center?.name }}</h3>
+            <div class="header">
+                <img [src]="center?.logo" alt="center logo" />
+
+                <h3>{{ center?.name }}</h3>
+            </div>
             <p>{{ center?.description }}</p>
             <p>{{ center?.description2 }}</p>
             <p class="location">
