@@ -18,7 +18,7 @@ export class AboutService {
     }
     get(): Observable<{ data: About[] }> {
         return this._http.get<{ data: About[] }>(
-            `https://marakezna.com/laravel/public/api/about/us?lang=${this.lang}`
+            `https://marakezna.com/public/api/about/us?lang=${this.lang}`
         );
     }
 }

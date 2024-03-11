@@ -18,7 +18,7 @@ export class AreaService {
     }
     get(): Observable<{ data: Areas[] }> {
         return this._http.get<{ data: Areas[] }>(
-            `https://marakezna.com/laravel/public/api/area?lang=${this.lang}`
+            `https://marakezna.com/public/api/area?lang=${this.lang}`
         );
     }
 }

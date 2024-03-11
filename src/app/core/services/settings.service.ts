@@ -18,7 +18,7 @@ export class SettingsService {
     }
     get(): Observable<{ data: Settings[] }> {
         return this._http.get<{ data: Settings[] }>(
-            `https://marakezna.com/laravel/public/api/web/setting?lang=${this.lang}`
+            `https://marakezna.com/public/api/web/setting?lang=${this.lang}`
         );
     }
 }

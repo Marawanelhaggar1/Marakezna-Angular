@@ -18,13 +18,13 @@ export class ServiceService {
     }
     get(): Observable<{ data: Service[] }> {
         return this._http.get<{ data: Service[] }>(
-            `https://marakezna.com/laravel/public/api/service?lang=${this.lang}`
+            `https://marakezna.com/public/api/service?lang=${this.lang}`
         );
     }
 
     getFeatured(): Observable<{ data: Service[] }> {
         return this._http.get<{ data: Service[] }>(
-            `https://marakezna.com/laravel/public/api/service?lang=${this.lang}`
+            `https://marakezna.com/public/api/service?lang=${this.lang}`
         );
     }
 }

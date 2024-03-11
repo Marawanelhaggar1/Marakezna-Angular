@@ -41,7 +41,6 @@ export class BookAppointmentComponent {
             email: ['', [Validators.required, Validators.email]],
             phone: ['', [Validators.required]],
             payment: ['', [Validators.required]],
-            health_center_id: ['', [Validators.required]],
             time: ['00:00', [Validators.required]],
         });
     }
@@ -91,7 +90,7 @@ export class BookAppointmentComponent {
             doctor_id: this.doctor.id,
             date: this.schedule.date,
             status: 'submitted',
-            // user_id: this.user.id,
+            health_center_id: this.schedule.center_id,
             ...this.appointmentForm.value,
         };
         console.log(booking);

@@ -18,43 +18,43 @@ export class CentersService {
     }
     get(): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `https://marakezna.com/laravel/public/api/center?lang=${this.lang}`
+            `https://marakezna.com/public/api/center?lang=${this.lang}`
         );
     }
 
     getById(id: number): Observable<{ data: Centers }> {
         return this._http.get<{ data: Centers }>(
-            `https://marakezna.com/laravel/public/api/center/${id}?lang=${this.lang}`
+            `https://marakezna.com/public/api/center/${id}?lang=${this.lang}`
         );
     }
 
     getByArea(areaId: number): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `https://marakezna.com/laravel/public/api/center/area/${areaId}?lang=${this.lang}`
+            `https://marakezna.com/public/api/center/area/${areaId}?lang=${this.lang}`
         );
     }
 
     getLabs(): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `https://marakezna.com/laravel/public/api/center/category/lab?lang=${this.lang}`
+            `https://marakezna.com/public/api/center/category/lab?lang=${this.lang}`
         );
     }
 
     getScans(): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `https://marakezna.com/laravel/public/api/center/category/scan?lang=${this.lang}`
+            `https://marakezna.com/public/api/center/category/scan?lang=${this.lang}`
         );
     }
 
     getLabsByArea(id: number): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `https://marakezna.com/laravel/public/api/center/category/lab/area/${id}?lang=${this.lang}`
+            `https://marakezna.com/public/api/center/category/lab/area/${id}?lang=${this.lang}`
         );
     }
 
     getScansByArea(id: number): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
-            `https://marakezna.com/laravel/public/api/center/category/scan/area/${id}?lang=${this.lang}`
+            `https://marakezna.com/public/api/center/category/scan/area/${id}?lang=${this.lang}`
         );
     }
 }
