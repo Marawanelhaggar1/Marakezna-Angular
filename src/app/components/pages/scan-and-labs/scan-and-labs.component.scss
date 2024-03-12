@@ -34,8 +34,12 @@
     }
 }
 
+.doctor-content {
+    height: 200px;
+}
+
 .buttons {
-    margin-top: 2rem;
+    // margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,16 +47,41 @@
     cursor: pointer;
 
     a {
-        width: 200px;
+        min-width: 150px;
         padding: 1rem 0;
         // padding: 0.5rem 2rem;
         border-radius: 15px;
     }
 
+    button {
+        min-width: 150px;
+        padding: 1rem 0;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        // padding: 0.5rem 2rem;
+        border-radius: 15px;
+    }
     .call {
         background-color: var(--paragraph-color);
         color: var(--white-color);
+        cursor: pointer;
+        transition: 0.3s;
+
         &:hover {
+            background-color: var(--main-color);
+        }
+    }
+    .drop-call {
+        // color: var(--white-color);
+        cursor: pointer;
+        transition: 0.3s;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        &:hover {
+            // padding-left: 10px;
+            color: white;
             background-color: var(--main-color);
         }
     }

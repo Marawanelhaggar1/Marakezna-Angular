@@ -62,4 +62,12 @@ export class CenterDetailsComponent {
             },
         });
     }
+
+    isOpen = false;
+    openPopup(): void {
+        this.isOpen = true;
+    }
+    closePopup(): void {
+        this.isOpen = false;
+    }
 }

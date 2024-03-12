@@ -48,10 +48,50 @@
             </p>
 
             <div class="buttons mb-3">
-                <a class="call" (click)="postService({ center_id: centerId })">
-                    <i class="bx bxs-phone-call"></i>
-                    {{ lang === "ltr" ? "Request Call" : "أطلب الأتصال بنا" }}
-                </a>
+                <!-- <a class=""> -->
+                <!-- <i class="bx bxs-phone-call"></i>
+                    {{ lang === "ltr" ? "Request Call" : "أطلب الأتصال بنا" }} -->
+                <div class="btn-group" dropdown>
+                    <button
+                        id="button-animated"
+                        dropdownToggle
+                        type="button"
+                        class="dropdown-toggle call"
+                        aria-controls="dropdown-animated"
+                    >
+                        <i class="bx bxs-phone-call"></i>
+                        {{
+                            lang === "ltr" ? "Request Call" : "أطلب الأتصال بنا"
+                        }}
+                        <span class="caret"></span>
+                    </button>
+                    <ul
+                        id="dropdown-animated"
+                        *dropdownMenu
+                        class="dropdown-menu"
+                        role="menu"
+                        aria-labelledby="button-animated"
+                    >
+                        <li
+                            *ngFor="let item of center?.service"
+                            role="menuitem"
+                        >
+                            <button
+                                type="button"
+                                (click)="
+                                    postService({
+                                        center_id: centerId,
+                                        service_id: item.id
+                                    })
+                                "
+                                class="dropdown-item drop-call"
+                            >
+                                {{ item.name }}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- </a> -->
                 <a [href]="center?.whatsApp" class="whatsapp">
                     <i class="fa-brands fa-whatsapp"></i>
                     {{ lang === "ltr" ? "Chat With Us" : "تحدث معنا" }}
@@ -62,5 +102,19 @@
                 <strong>Alert !</strong>{{ alert }}
             </alert>
         </div>
+    </div>
+</div>
+<div class="video-popup" *ngIf="isOpen">
+    <div class="popup-inner">
+        <!-- <iframe
+            [src]="about.videoLink"
+            title="Setup and Local Installation - React Nextjs Online Yoga Coaching &amp; Training Courses System"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+        ></iframe> -->
+        <button (click)="closePopup()" type="button" class="close-btn">
+            <i class="bx bx-x"></i>
+        </button>
     </div>
 </div>

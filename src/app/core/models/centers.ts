@@ -6,6 +6,10 @@ export interface Centers {
         id: number;
         name: string;
     };
+    service: {
+        id: number;
+        name: string;
+    }[];
     image: string;
     logo: string;
     description: string;

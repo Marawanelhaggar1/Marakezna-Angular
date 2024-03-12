@@ -173,6 +173,7 @@ export class ScanAndLabsComponent {
             this._centerServices.get().subscribe({
                 next: (data) => {
                     this.centers = data.data;
+                    console.log(this.centers);
                 },
             });
         }
