@@ -23,7 +23,8 @@
 .single-services-box {
     height: 500px;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 2rem;
     align-items: center;
     flex-direction: column;
 

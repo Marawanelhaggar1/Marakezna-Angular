@@ -52,7 +52,7 @@ const routes: Routes = [
     { path: '', component: HomeDemoOneComponent },
 
     { path: 'center-of-excellence', component: AboutPageOneComponent },
-    { path: 'about-us-2', component: AboutPageTwoComponent },
+    { path: 'about-us', component: AboutPageTwoComponent },
     { path: 'about-us-3', component: AboutPageThreeComponent },
     { path: 'doctors', component: DentistsPageComponent },
     { path: 'insurance', component: InsurancePageComponent },
@@ -70,8 +70,8 @@ const routes: Routes = [
         path: 'portfolio-details',
         component: PortfolioDetailsPageComponent,
     },
-    { path: 'services', component: ServicesPageOneComponent },
-    { path: 'services-2', component: ServicesPageTwoComponent },
+    // { path: 'services', component: ServicesPageOneComponent },
+    { path: 'services', component: ServicesPageTwoComponent },
     {
         path: 'services-3',
         component: ServicesPageThreeComponent,
@@ -108,9 +108,9 @@ const routes: Routes = [
     { path: 'blog-right-sidebar', component: BlogRightSidebarPageComponent },
     { path: 'blog-left-sidebar', component: BlogLeftSidebarPageComponent },
     { path: 'blog-details', component: BlogDetailsPageComponent },
-    { path: 'contact-us', component: ContactPageOneComponent },
+    // { path: 'contact-us', component: ContactPageOneComponent },
     { path: 'contact-us-2', component: ContactPageTwoComponent },
-    { path: 'contact-us-3', component: ContactPageThreeComponent },
+    { path: 'contact-us', component: ContactPageThreeComponent },
     // Here add new pages component
 
     { path: '**', component: NotFoundComponent }, // This line will remain down from the whole pages component list
