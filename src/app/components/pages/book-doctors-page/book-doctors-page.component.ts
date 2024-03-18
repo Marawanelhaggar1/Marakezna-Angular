@@ -6,6 +6,7 @@ import {
     Params,
 } from '@angular/router';
 // import { Router,  } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Booking } from 'src/app/core/models/booking';
@@ -46,8 +47,6 @@ export class BookDoctorsPageComponent {
 
     daysOfTheWeek!: string[];
     sub!: any;
-    alert?: string;
-    alertStatus!: string;
 
     constructor(
         private _ActivatedRoute: ActivatedRoute,
@@ -258,19 +257,25 @@ export class BookDoctorsPageComponent {
             next: (data) => {
                 console.log(data);
                 console.log(this.centerId);
-                this.alertStatus = 'success';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'request Sent'
-                        : 'تم أرسال طلبك بنجاح';
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Good job' : 'أحسنت',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'request Sent'
+                            : 'تم أرسال طلبك بنجاح',
+                    icon: 'success',
+                });
             },
             error: (err) => {
                 console.error(err);
-                this.alertStatus = 'danger';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'Please Login First'
-                        : 'من فضلك سجل الدخول أولا';
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Try Again!' : 'حاول مجددا!',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'Please Login First'
+                            : 'من فضلك سجل الدخول أولا',
+                    icon: 'error',
+                });
             },
         });
     }

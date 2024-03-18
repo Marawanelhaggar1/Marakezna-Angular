@@ -74,7 +74,7 @@
         }
     }
     .menu-dropdown {
-        max-width: 300px;
+        width: 300px;
         overflow-y: scroll;
         max-height: 300px;
         &::-webkit-scrollbar {
@@ -99,6 +99,7 @@
         cursor: pointer;
         transition: 0.3s;
         // height: 100px;
+        white-space: wrap;
         padding-left: 10px;
         padding-right: 10px;
 

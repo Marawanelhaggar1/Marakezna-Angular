@@ -105,20 +105,23 @@
                     </li>
                     <li class="social">
                         <a
-                            href="https://www.facebook.com/RouvanhospitalEg"
+                            *ngIf="setting?.facebook"
+                            [href]="setting?.facebook"
                             target="_blank"
                         >
                             <i class="bx bxl-facebook"></i>
                         </a>
 
                         <a
-                            href="https://www.linkedin.com/company/rouvanhospital/"
+                            *ngIf="setting?.linkedin"
+                            [href]="setting?.linkedin"
                             target="_blank"
                         >
                             <i class="bx bxl-linkedin"></i>
                         </a>
                         <a
-                            href="https://www.instagram.com/rouvanhospitaleg?fbclid=IwAR2DsgO2feehTPFmKFU-ZhIepmYdWQoyJBjum6IZvD8HQyynGVToyz1TsCY"
+                            *ngIf="setting?.instagram"
+                            [href]="setting?.instagram"
                             target="_blank"
                         >
                             <i class="bx bxl-instagram"></i>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Centers } from 'src/app/core/models/centers';
 import { BookingService } from 'src/app/core/services/booking.service';
 import { CentersService } from 'src/app/core/services/centers.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-center-details',
@@ -14,8 +15,6 @@ export class CenterDetailsComponent {
     center?: Centers;
     centerId!: number;
     sub?: any;
-    alert?: string;
-    alertStatus!: string;
 
     constructor(
         private _ActivatedRoutes: ActivatedRoute,
@@ -46,19 +45,25 @@ export class CenterDetailsComponent {
         return this._bookingService.requestCall(body).subscribe({
             next: (data) => {
                 console.log(data);
-                this.alertStatus = 'success';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'request Sent'
-                        : 'تم أرسال طلبك بنجاح';
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Good job' : 'أحسنت',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'request Sent'
+                            : 'تم أرسال طلبك بنجاح',
+                    icon: 'success',
+                });
             },
             error: (err) => {
                 console.error(err);
-                this.alertStatus = 'danger';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'Please Login First'
-                        : 'من فضلك سجل الدخول أولا';
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Try Again!' : 'حاول مجددا!',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'Please Login First'
+                            : 'من فضلك سجل الدخول أولا',
+                    icon: 'error',
+                });
             },
         });
     }

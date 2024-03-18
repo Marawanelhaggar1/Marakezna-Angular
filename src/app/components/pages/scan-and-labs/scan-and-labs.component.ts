@@ -8,6 +8,7 @@ import {
 import { Centers } from 'src/app/core/models/centers';
 import { BookingService } from 'src/app/core/services/booking.service';
 import { CentersService } from 'src/app/core/services/centers.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-scan-and-labs',
@@ -19,8 +20,6 @@ export class ScanAndLabsComponent {
     centers: Centers[] = [];
     center?: Centers;
     sub!: any;
-    alert?: string;
-    alertStatus!: string;
     title?: string;
 
     constructor(
@@ -183,19 +182,27 @@ export class ScanAndLabsComponent {
         return this._bookingService.requestCall(body).subscribe({
             next: (data) => {
                 console.log(data);
-                this.alertStatus = 'success';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'request Sent'
-                        : 'تم أرسال طلبك بنجاح';
+
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Good job' : 'أحسنت',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'request Sent'
+                            : 'تم أرسال طلبك بنجاح',
+                    icon: 'success',
+                });
             },
             error: (err) => {
                 console.error(err);
-                this.alertStatus = 'danger';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'Please Login First'
-                        : 'من فضلك سجل الدخول أولا';
+
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Try Again!' : 'حاول مجددا!',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'Please Login First'
+                            : 'من فضلك سجل الدخول أولا',
+                    icon: 'error',
+                });
             },
         });
     }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import { CookieService } from 'ngx-cookie-service';
 // import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 import { Doctor } from 'src/app/core/models/doctor';
 import { UserService } from 'src/app/core/services/auth-services.service';
@@ -96,15 +97,21 @@ export class BookAppointmentComponent {
         console.log(booking);
         return this._bookingService.postBooking(booking).subscribe({
             next: (data) => {
-                this.alertStatus = 'success';
-                this.alert =
-                    this.lang === 'ltr'
-                        ? 'Appointment Successfully Booked'
-                        : 'تم الحجز بنجاح';
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Good job' : 'أحسنت',
+                    text:
+                        this.lang === 'ltr'
+                            ? 'Appointment Successfully Booked'
+                            : 'تم الحجز بنجاح',
+                    icon: 'success',
+                });
             },
             error: (err) => {
-                this.alertStatus = 'danger';
-                this.alert = err.error.message;
+                Swal.fire({
+                    title: this.lang === 'ltr' ? 'Try Again!' : 'حاول مجددا!',
+                    text: err.error.message,
+                    icon: 'error',
+                });
             },
         });
     }
