@@ -10,6 +10,9 @@ export interface Settings {
     twitter: string;
     facebook: string;
     linkedin: string;
+    tiktok: string;
+    snapchat: string;
+    youtube: string;
     instagram: string;
     logo: string;
     favicon: string;

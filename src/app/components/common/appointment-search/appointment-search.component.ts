@@ -6,6 +6,7 @@ import { Areas } from 'src/app/core/models/areas';
 import { Centers } from 'src/app/core/models/centers';
 import { Doctor } from 'src/app/core/models/doctor';
 import { Specialization } from 'src/app/core/models/specialization';
+import { SubAreaModel } from 'src/app/core/models/sub-area-model';
 import { AreaService } from 'src/app/core/services/area.service';
 import { CentersService } from 'src/app/core/services/centers.service';
 import { DoctorService } from 'src/app/core/services/doctor.service';
@@ -29,12 +30,11 @@ export class AppointmentSearchComponent {
     specialties?: string[] = [];
     areas: string[] = [];
     area: Areas[] = [];
+    subAreas: string[] = [];
+    subArea: SubAreaModel[] = [];
+    subAreaId?: number;
     centers: string[] = [];
     center: Centers[] = [];
-    // labs: string[] = [];
-    // lab: Centers[] = [];
-    // scans: string[] = [];
-    // scan: Centers[] = [];
     docId?: number;
     CenterId?: number;
     specialtyId?: number;
@@ -50,6 +50,7 @@ export class AppointmentSearchComponent {
     ) {
         this.searchForm = _formBuilder.group({
             area: ['', [Validators.required]],
+            subArea: ['', [Validators.required]],
             center: ['', [Validators.required]],
             specialty: ['', [Validators.required]],
             doctor: ['', [Validators.required]],
@@ -58,6 +59,7 @@ export class AppointmentSearchComponent {
         this.scanForm = _formBuilder.group({
             category: ['', [Validators.required]],
             area: ['', [Validators.required]],
+            subArea: ['', [Validators.required]],
             center: ['', [Validators.required]],
         });
     }
@@ -78,6 +80,7 @@ export class AppointmentSearchComponent {
         this.getDoctor();
         this.getArea();
         this.getCenter();
+        this.getSubArea();
     }
 
     getSpecialties() {
@@ -167,14 +170,89 @@ export class AppointmentSearchComponent {
         });
     }
 
+    getSubArea() {
+        return this._areaService.getSubArea().subscribe({
+            next: (data) => {
+                this.subArea = data.data;
+                for (const area of this.subArea) {
+                    this.subAreas.push(area.name);
+                }
+                // console.log(this.subAreas);
+            },
+        });
+    }
+
+    getAllLabsAndScans() {
+        this.centers = [];
+        if (this.scanForm.value.subArea) {
+            let a: SubAreaModel = this.subArea.find(
+                (a) => a.name === this.scanForm.value.subArea
+            )!;
+            console.log(a);
+
+            return this._centerService.getBySubArea(a.id).subscribe({
+                next: (data) => {
+                    console.log(data);
+                    this.center = data.data;
+                    for (const cen of this.center) {
+                        this.centers.push(cen.name);
+                    }
+                },
+            });
+        } else if (this.scanForm.value.area) {
+            let a: Areas = this.area.find(
+                (a) => a.name === this.scanForm.value.area
+            )!;
+            console.log(a);
+
+            return this._centerService.getByArea(a.id).subscribe({
+                next: (data) => {
+                    console.log(data);
+                    this.center = data.data;
+                    for (const cen of this.center) {
+                        this.centers.push(cen.name);
+                    }
+                },
+            });
+        } else {
+            return this._centerService.getLabsAndScans().subscribe({
+                next: (data) => {
+                    this.center = data.data;
+                    for (const cen of this.center) {
+                        this.centers.push(cen.name);
+                    }
+                },
+            });
+        }
+    }
+
     getCenter() {
         // console.log(this.searchForm.value);
-        this.centers = [];
-        if (this.searchForm.value.area || this.scanForm.value.area) {
+        if (this.searchForm.value.area) {
             let a: Areas = this.area.find(
-                (a) =>
-                    a.name === this.searchForm.value.area ||
-                    a.name === this.scanForm.value.area
+                (a) => a.name === this.searchForm.value.area
+            )!;
+            this.getSubAreaByArea(a.id);
+        }
+        this.centers = [];
+        if (this.searchForm.value.subArea) {
+            let a: SubAreaModel = this.subArea.find(
+                (a) => a.name === this.searchForm.value.subArea
+            )!;
+            console.log(a);
+
+            return this._centerService.getBySubArea(a.id).subscribe({
+                next: (data) => {
+                    console.log(data);
+                    this.center = data.data;
+                    for (const cen of this.center) {
+                        this.centers.push(cen.name);
+                    }
+                },
+            });
+        } else if (this.searchForm.value.area) {
+            let a: Areas = this.area.find(
+                (a) => a.name === this.searchForm.value.area
             )!;
             console.log(a);
 
@@ -200,7 +278,28 @@ export class AppointmentSearchComponent {
     }
 
     getLabsOrScans() {
-        if (this.scanForm.value.category && this.scanForm.value.area) {
+        if (this.scanForm.value.area) {
+            let a: Areas = this.area.find(
+                (a) => a.name === this.scanForm.value.area
+            )!;
+            this.getSubAreaByArea(a.id);
+        }
+        if (this.scanForm.value.category && this.scanForm.value.subArea) {
+            let a: SubAreaModel = this.subArea.find(
+                (a) => a.name === this.scanForm.value.subArea
+            )!;
+            if (
+                this.scanForm.value.category == 'Scan' ||
+                this.scanForm.value.category == 'أشعة'
+            ) {
+                this.getScanBySubArea(a.id);
+            } else if (
+                this.scanForm.value.category == 'Lab' ||
+                this.scanForm.value.category == 'معمل'
+            ) {
+                this.getLabsBySubArea(a.id);
+            }
+        } else if (this.scanForm.value.category && this.scanForm.value.area) {
             let a: Areas = this.area.find(
                 (a) => a.name === this.scanForm.value.area
             )!;
@@ -228,7 +327,7 @@ export class AppointmentSearchComponent {
                 this.getLabs();
             }
         } else {
-            this.getCenter();
+            this.getAllLabsAndScans();
         }
     }
 
@@ -246,6 +345,16 @@ export class AppointmentSearchComponent {
     getLabsByArea(id: number) {
         this.centers = [];
         return this._centerService.getLabsByArea(id).subscribe((labs) => {
+            this.center = labs.data;
+            console.log(this.center);
+            for (const cen of this.center) {
+                this.centers.push(cen.name);
+            }
+        });
+    }
+    getLabsBySubArea(id: number) {
+        this.centers = [];
+        return this._centerService.getLabsBySubArea(id).subscribe((labs) => {
             this.center = labs.data;
             console.log(this.center);
             for (const cen of this.center) {
@@ -277,10 +386,40 @@ export class AppointmentSearchComponent {
             }
         });
     }
+    getScanBySubArea(id: number) {
+        this.centers = [];
+        console.log(this.center);
+
+        return this._centerService.getScansBySubArea(id).subscribe((scans) => {
+            this.center = scans.data;
+            for (const cen of this.center) {
+                this.centers.push(cen.name);
+            }
+        });
+    }
+
+    getSubAreaByArea(id: number) {
+        this.subAreas = [];
+        console.log('subArea By Area');
+        this._areaService.getSubAreaByArea(id).subscribe({
+            next: (data) => {
+                this.subArea = data.data;
+                for (const area of this.subArea) {
+                    this.subAreas.push(area.name);
+                }
+                console.log(this.subAreas);
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
+    }
 
     setScan() {
         let area = this.area.find((i) => i.name === this.scanForm.value.area);
-
+        let subArea = this.subArea.find(
+            (i) => i.name === this.scanForm.value.subArea
+        );
         let cen = this.center.find((i) => {
             return i.name === this.scanForm.value.center;
         });
@@ -289,6 +428,7 @@ export class AppointmentSearchComponent {
         this.getLabsOrScans();
         this.areaId = area?.id;
         this.CenterId = cen?.id;
+        this.subAreaId = subArea?.id;
 
         // console.log(area);
     }

@@ -6,6 +6,7 @@ import { Centers } from 'src/app/core/models/centers';
 import { Doctor } from 'src/app/core/models/doctor';
 import { Settings } from 'src/app/core/models/settings';
 import { Specialization } from 'src/app/core/models/specialization';
+import { SubAreaModel } from 'src/app/core/models/sub-area-model';
 import { AreaService } from 'src/app/core/services/area.service';
 import { CentersService } from 'src/app/core/services/centers.service';
 import { DoctorService } from 'src/app/core/services/doctor.service';
@@ -32,6 +33,9 @@ export class AppointmentComponent implements OnInit {
     area: Areas[] = [];
     centers: string[] = [];
     center: Centers[] = [];
+    subAreas: string[] = [];
+    subArea: SubAreaModel[] = [];
+    subAreaId?: number;
     docId?: number;
     CenterId?: number;
     specialtyId?: number;
@@ -49,6 +53,7 @@ export class AppointmentComponent implements OnInit {
     ) {
         this.searchForm = _formBuilder.group({
             area: ['', [Validators.required]],
+            subArea: ['', [Validators.required]],
             center: ['', [Validators.required]],
             specialty: ['', [Validators.required]],
             doctor: ['', [Validators.required]],
@@ -65,6 +70,7 @@ export class AppointmentComponent implements OnInit {
         this.getSpecialties();
         this.getDoctor();
         this.getArea();
+        this.getSubArea();
         this.getCenter();
         this.getSettings();
     }
@@ -167,10 +173,59 @@ export class AppointmentComponent implements OnInit {
         });
     }
 
+    getSubArea() {
+        return this._areaService.getSubArea().subscribe({
+            next: (data) => {
+                this.subArea = data.data;
+                for (const area of this.subArea) {
+                    this.subAreas.push(area.name);
+                }
+                // console.log(this.subAreas);
+            },
+        });
+    }
+
+    getSubAreaByArea(id: number) {
+        this.subAreas = [];
+        console.log('subArea By Area');
+        this._areaService.getSubAreaByArea(id).subscribe({
+            next: (data) => {
+                this.subArea = data.data;
+                for (const area of this.subArea) {
+                    this.subAreas.push(area.name);
+                }
+                console.log(this.subAreas);
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
+    }
     getCenter() {
-        console.log(this.searchForm.value);
-        this.centers = [];
+        // console.log(this.searchForm.value);
         if (this.searchForm.value.area) {
+            let a: Areas = this.area.find(
+                (a) => a.name === this.searchForm.value.area
+            )!;
+            this.getSubAreaByArea(a.id);
+        }
+        this.centers = [];
+        if (this.searchForm.value.subArea) {
+            let a: SubAreaModel = this.subArea.find(
+                (a) => a.name === this.searchForm.value.subArea
+            )!;
+            console.log(a);
+
+            return this._centerService.getBySubArea(a.id).subscribe({
+                next: (data) => {
+                    console.log(data);
+                    this.center = data.data;
+                    for (const cen of this.center) {
+                        this.centers.push(cen.name);
+                    }
+                },
+            });
+        } else if (this.searchForm.value.area) {
             let a: Areas = this.area.find(
                 (a) => a.name === this.searchForm.value.area
             )!;

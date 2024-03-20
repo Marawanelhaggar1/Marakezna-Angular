@@ -47,11 +47,11 @@
 
                                 <form [formGroup]="searchForm">
                                     <div class="form-group">
-                                        <label>{{
+                                        <!-- <label>{{
                                             lang === "ltr"
                                                 ? "  Area "
                                                 : " المنطقة "
-                                        }}</label>
+                                        }}</label> -->
 
                                         <input
                                             [typeahead]="areas"
@@ -107,11 +107,71 @@
                                         </ng-template>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{
+                                        <!-- <label>{{
+                                            lang === "ltr"
+                                                ? " Sub Area "
+                                                : " المنطقة الفرعية"
+                                        }}</label> -->
+
+                                        <input
+                                            [typeahead]="subAreas"
+                                            formControlName="subArea"
+                                            [placeholder]="
+                                                lang === 'ltr'
+                                                    ? 'Sub Area'
+                                                    : ' المنطقة الفرعية'
+                                            "
+                                            [typeaheadOptionsLimit]="100"
+                                            [typeaheadMinLength]="0"
+                                            [optionsListTemplate]="
+                                                customListTemplate8
+                                            "
+                                            (typeaheadOnSelect)="getCenter()"
+                                            class="form-control"
+                                        />
+                                        <ng-template
+                                            #customListTemplate8
+                                            let-matches="matches"
+                                            let-query="query"
+                                            let-typeaheadTemplateMethods
+                                        >
+                                            <ul class="custom-list-group">
+                                                <li
+                                                    class="custom-list-group-item"
+                                                    *ngFor="
+                                                        let match of matches
+                                                    "
+                                                    [class.active]="
+                                                        typeaheadTemplateMethods.isActive(
+                                                            match
+                                                        )
+                                                    "
+                                                    (click)="
+                                                        typeaheadTemplateMethods.selectMatch(
+                                                            match,
+                                                            $event
+                                                        )
+                                                    "
+                                                    (mouseenter)="
+                                                        typeaheadTemplateMethods.selectActive(
+                                                            match
+                                                        )
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-current-location"
+                                                    ></i>
+                                                    {{ match }}
+                                                </li>
+                                            </ul>
+                                        </ng-template>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- <label>{{
                                             lang === "ltr"
                                                 ? "  Center "
                                                 : " مركز "
-                                        }}</label>
+                                        }}</label> -->
 
                                         <input
                                             [typeahead]="centers"
@@ -167,11 +227,11 @@
                                         </ng-template>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{
+                                        <!-- <label>{{
                                             lang === "ltr"
                                                 ? "  Specialty "
                                                 : " التخصص "
-                                        }}</label>
+                                        }}</label> -->
 
                                         <input
                                             [typeahead]="specialties"
@@ -227,11 +287,11 @@
                                         </ng-template>
                                     </div>
                                     <div class="form-group">
-                                        <label>{{
+                                        <!-- <label>{{
                                             lang === "ltr"
                                                 ? "  Doctor "
                                                 : " دكتور "
-                                        }}</label>
+                                        }}</label> -->
                                         <input
                                             [typeahead]="doctor"
                                             formControlName="doctor"

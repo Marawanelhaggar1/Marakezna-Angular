@@ -90,7 +90,7 @@
         }
 
         .details {
-            max-width: 500px;
+            width: 500px;
 
             .title {
                 .name {
@@ -226,6 +226,18 @@
         a {
             width: 120px !important;
             font-size: smaller;
+        }
+    }
+    .booking-card {
+        .details {
+            width: 300px !important;
+        }
+    }
+
+    .booking {
+        .header {
+            flex-direction: column;
+            gap: 1rem;
         }
     }
 }

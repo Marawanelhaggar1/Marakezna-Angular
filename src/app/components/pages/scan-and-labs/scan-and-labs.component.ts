@@ -37,7 +37,7 @@ export class ScanAndLabsComponent {
         }
 
         this.sub = Object.assign({}, this._ActivatedRoute.snapshot.queryParams);
-
+        // console.log(this.sub.center);
         if (this.sub.center) {
             this.getCenterById(this.sub.center);
         } else {
@@ -76,10 +76,10 @@ export class ScanAndLabsComponent {
     }
 
     getCenterById(id: number) {
-        // this.centers = [];
+        this.centers = [];
         return this._centerServices.getById(id).subscribe((data) => {
             this.center = data.data;
-            // this.centers.push(this.center);
+            this.centers.push(this.center);
         });
     }
 
@@ -94,6 +94,14 @@ export class ScanAndLabsComponent {
     getLabsByArea(id: number) {
         // this.centers = [];
         return this._centerServices.getLabsByArea(id).subscribe((labs) => {
+            this.centers = labs.data;
+            console.log(this.center);
+        });
+    }
+
+    getLabsBySubArea(id: number) {
+        // this.centers = [];
+        return this._centerServices.getLabsBySubArea(id).subscribe((labs) => {
             this.centers = labs.data;
             console.log(this.center);
         });
@@ -116,8 +124,35 @@ export class ScanAndLabsComponent {
         });
     }
 
+    getScanBySubArea(id: number) {
+        // this.centers = [];
+        console.log(this.center);
+
+        return this._centerServices.getScansBySubArea(id).subscribe((scans) => {
+            this.centers = scans.data;
+        });
+    }
+
     getCenters() {
-        if (this.sub.area && this.sub.category) {
+        if (this.sub.subArea && this.sub.category) {
+            console.log('cat and SubArea');
+            if (this.sub.category == 'Scan' || this.sub.category == 'أشعة') {
+                this.getScanBySubArea(this.sub.subArea);
+                this.title =
+                    this.lang == 'ltr'
+                        ? 'Best Scans In Egypt'
+                        : 'أفضل أشعة فى مصر';
+            } else if (
+                this.sub.category == 'Lab' ||
+                this.sub.category == 'معمل'
+            ) {
+                this.title =
+                    this.lang == 'ltr'
+                        ? 'Best Labs In Egypt'
+                        : 'أفضل معامل فى مصر';
+                this.getLabsBySubArea(this.sub.subArea);
+            }
+        } else if (this.sub.area && this.sub.category) {
             console.log('cat and area');
             if (this.sub.category == 'Scan' || this.sub.category == 'أشعة') {
                 this.getScanByArea(this.sub.area);
@@ -154,6 +189,15 @@ export class ScanAndLabsComponent {
                         : 'أفضل معامل فى مصر';
                 this.getLabs();
             }
+        } else if (this.sub.subArea) {
+            console.log('subArea');
+            this.title =
+                this.lang == 'ltr'
+                    ? 'Best Scans And Labs In Egypt'
+                    : 'أفضل أشعة و معامل فى مصر';
+            this._centerServices
+                .getBySubArea(this.sub.subArea)
+                .subscribe((data) => (this.centers = data.data));
         } else if (this.sub.area) {
             console.log(' area');
             this.title =
@@ -169,7 +213,7 @@ export class ScanAndLabsComponent {
                 this.lang == 'ltr'
                     ? 'Best Scans And Labs In Egypt'
                     : 'أفضل أشعة و معامل فى مصر';
-            this._centerServices.get().subscribe({
+            this._centerServices.getLabsAndScans().subscribe({
                 next: (data) => {
                     this.centers = data.data;
                     console.log(this.centers);

@@ -34,6 +34,18 @@ export class CentersService {
         );
     }
 
+    getBySubArea(areaId: number): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://marakezna.com/public/api/center/sub/area/${areaId}?lang=${this.lang}`
+        );
+    }
+
+    getLabsAndScans(): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://marakezna.com/public/api/center/scans/labs?lang=${this.lang}`
+        );
+    }
+
     getLabs(): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
             `https://marakezna.com/public/api/center/category/lab?lang=${this.lang}`
@@ -51,10 +63,21 @@ export class CentersService {
             `https://marakezna.com/public/api/center/category/lab/area/${id}?lang=${this.lang}`
         );
     }
+    getLabsBySubArea(id: number): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://marakezna.com/public/api/center/category/lab/sub/area/${id}?lang=${this.lang}`
+        );
+    }
 
     getScansByArea(id: number): Observable<{ data: Centers[] }> {
         return this._http.get<{ data: Centers[] }>(
             `https://marakezna.com/public/api/center/category/scan/area/${id}?lang=${this.lang}`
+        );
+    }
+
+    getScansBySubArea(id: number): Observable<{ data: Centers[] }> {
+        return this._http.get<{ data: Centers[] }>(
+            `https://marakezna.com/public/api/center/category/scan/sub/area/${id}?lang=${this.lang}`
         );
     }
 }

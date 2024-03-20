@@ -21,4 +21,16 @@ export class AreaService {
             `https://marakezna.com/public/api/area?lang=${this.lang}`
         );
     }
+
+    getSubArea(): Observable<{ data: Areas[] }> {
+        return this._http.get<{ data: Areas[] }>(
+            `https://marakezna.com/public/api/sub/area?lang=${this.lang}`
+        );
+    }
+
+    getSubAreaByArea(id: number): Observable<{ data: Areas[] }> {
+        return this._http.get<{ data: Areas[] }>(
+            `https://marakezna.com/public/api/sub/area/area/${id}?lang=${this.lang}`
+        );
+    }
 }

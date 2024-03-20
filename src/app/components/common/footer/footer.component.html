@@ -155,6 +155,52 @@
                             {{ lang === "ltr" ? "Our Location" : "عنوانا" }}
                             <span> {{ setting?.address }}</span>
                         </li>
+                        <li class="social">
+                            <a
+                                *ngIf="setting?.facebook"
+                                [href]="setting?.facebook"
+                                target="_blank"
+                            >
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a
+                                *ngIf="setting?.youtube"
+                                [href]="setting?.youtube"
+                                target="_blank"
+                            >
+                                <i class="bx bxl-youtube"></i>
+                            </a>
+                            <a
+                                *ngIf="setting?.linkedin"
+                                [href]="setting?.linkedin"
+                                target="_blank"
+                            >
+                                <i class="bx bxl-linkedin"></i>
+                            </a>
+                            <a
+                                *ngIf="setting?.instagram"
+                                [href]="setting?.instagram"
+                                target="_blank"
+                            >
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+
+                            <a
+                                *ngIf="setting?.tiktok"
+                                [href]="setting?.tiktok"
+                                target="_blank"
+                            >
+                                <i class="bx bxl-tiktok"></i>
+                            </a>
+
+                            <a
+                                *ngIf="setting?.snapchat"
+                                [href]="setting?.snapchat"
+                                target="_blank"
+                            >
+                                <i class="bx bxl-snapchat"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

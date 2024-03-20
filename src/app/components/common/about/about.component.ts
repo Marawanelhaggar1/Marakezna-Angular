@@ -9,14 +9,17 @@ import { Router } from '@angular/router';
 export class AboutComponent implements OnInit {
     lang?: string;
     services = [
-        { en: 'Radiology Center', ar: 'مركز الأشعة' },
-        { en: 'Operations Department', ar: ' قسم العمليات ' },
-        { en: 'Emergency and Trauma Center', ar: ' مركز الطوارئ والإصابات ' },
-        { en: 'Intensive Care Unit', ar: ' الرعاية المركزة ' },
-        { en: 'Outpatient clinics', ar: 'العيادات الخارجية' },
-        { en: 'Accommodation', ar: 'الإقامات' },
-        { en: 'Medical analysis laboratory', ar: 'معمل التحاليل الطبية' },
-        { en: 'Cardiology Center', ar: ' مراكز القلب' },
+        {
+            en: 'Arab Breast and cancer care (Oncology Center of Excellence)',
+            ar: 'الرعاية العربية للثدي وسرطان الثدي (مركز الأورام المتميز)',
+        },
+        // { en: 'Operations Department', ar: ' قسم العمليات ' },
+        // { en: 'Emergency and Trauma Center', ar: ' مركز الطوارئ والإصابات ' },
+        // { en: 'Intensive Care Unit', ar: ' الرعاية المركزة ' },
+        // { en: 'Outpatient clinics', ar: 'العيادات الخارجية' },
+        // { en: 'Accommodation', ar: 'الإقامات' },
+        // { en: 'Medical analysis laboratory', ar: 'معمل التحاليل الطبية' },
+        // { en: 'Cardiology Center', ar: ' مراكز القلب' },
     ];
     constructor() {}
 
