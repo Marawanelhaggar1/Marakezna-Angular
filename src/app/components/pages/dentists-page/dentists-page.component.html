@@ -49,5 +49,25 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-12 col-sm-12 col-md-12">
+            <div class="pagination-area">
+                <span class="prev page-numbers" disabled>
+                    <i class="flaticon-015-left-arrow"></i>
+                </span>
+                <span
+                    *ngFor="let p of page"
+                    [ngClass]="p == currentPage ? 'current' : ''"
+                    class="page-numbers"
+                    aria-current="page"
+                    (click)="getDoctors(p)"
+                >
+                    {{ p }}
+                </span>
+
+                <a class="next page-numbers">
+                    <i class="flaticon-014-right-arrow"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

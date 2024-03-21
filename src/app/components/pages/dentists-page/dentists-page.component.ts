@@ -9,6 +9,8 @@ import { DoctorService } from 'src/app/core/services/doctor.service';
 })
 export class DentistsPageComponent implements OnInit {
     lang?: string;
+    currentPage!: number;
+    page: number[] = [];
     doctors: Doctor[] = [
         // {
         //     image: 'https://angular.hibotheme.com/inba/inba-rtl/assets/images/doctor/doctor-2.jpg',
@@ -75,12 +77,17 @@ export class DentistsPageComponent implements OnInit {
         } else {
             this.lang = 'ltr';
         }
-        this.getDoctors();
+        this.getDoctors(1);
     }
 
-    getDoctors() {
-        return this._doctorService.get().subscribe((doctor) => {
+    getDoctors(page: number) {
+        this.doctors = [];
+        return this._doctorService.getPaginate(page).subscribe((doctor) => {
             this.doctors = doctor.data;
+            this.currentPage = doctor.meta.current_page;
+            for (let i = 1; i <= doctor.meta.last_page; i++) {
+                if (!this.page.includes(i)) this.page.push(i);
+            }
             console.log(this.doctors);
         });
     }

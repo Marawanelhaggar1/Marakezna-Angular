@@ -22,6 +22,20 @@ export class DoctorService {
         );
     }
 
+    getPaginate(page: number): Observable<{
+        data: Doctor[];
+        meta: { last_page: number; current_page: number };
+        links: { next: string; prev: string };
+    }> {
+        return this._http.get<{
+            data: Doctor[];
+            meta: { last_page: number; current_page: number };
+            links: { next: string; prev: string };
+        }>(
+            `https://marakezna.com/public/api/doctors/paginate?lang=${this.lang}&page=${page}`
+        );
+    }
+
     getFeatured(): Observable<{ data: Doctor[] }> {
         return this._http.get<{ data: Doctor[] }>(
             `https://marakezna.com/public/api/doctors/featured?lang=${this.lang}`
