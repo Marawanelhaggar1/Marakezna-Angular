@@ -114,33 +114,39 @@
 
             <div *ngIf="doc.appointment" class="date">
                 <owl-carousel-o [options]="customOptions" dir="ltr">
-                    <ng-template
+                    <ng-container
                         *ngFor="let item of doc.doctorSchedule; index as i"
-                        carouselSlide
                     >
-                        <div
-                            class="dates-card"
-                            [routerLink]="['/book-appointment', item.id]"
+                        <ng-template
+                            *ngIf="
+                                sub.center ? sub.center == item.center_id : true
+                            "
+                            carouselSlide
                         >
-                            <p class="date-banner">{{ item.date }}</p>
-                            <p class="dates">
-                                {{
-                                    lang === "ltr"
-                                        ? "From " +
-                                          item.start_time +
-                                          " To " +
-                                          item.end_time
-                                        : " من" +
-                                          item.start_time +
-                                          " الى" +
-                                          item.end_time
-                                }}
-                            </p>
-                            <button type="button">
-                                {{ lang === "ltr" ? "Book" : "أحجز" }}
-                            </button>
-                        </div>
-                    </ng-template>
+                            <div
+                                class="dates-card"
+                                [routerLink]="['/book-appointment', item.id]"
+                            >
+                                <p class="date-banner">{{ item.date }}</p>
+                                <p class="dates">
+                                    {{
+                                        lang === "ltr"
+                                            ? "From " +
+                                              item.start_time +
+                                              " To " +
+                                              item.end_time
+                                            : " من" +
+                                              item.start_time +
+                                              " الى" +
+                                              item.end_time
+                                    }}
+                                </p>
+                                <button type="button">
+                                    {{ lang === "ltr" ? "Book" : "أحجز" }}
+                                </button>
+                            </div>
+                        </ng-template>
+                    </ng-container>
                 </owl-carousel-o>
             </div>
             <div *ngIf="!doc.appointment">

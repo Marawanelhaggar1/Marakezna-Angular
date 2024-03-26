@@ -24,6 +24,7 @@ export interface Doctor {
     doctorSchedule: {
         id: number;
         date: string;
+        center_id: number;
         start_time: string;
         end_time: string;
     }[];
