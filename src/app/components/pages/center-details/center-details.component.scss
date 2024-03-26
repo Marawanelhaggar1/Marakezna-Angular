@@ -19,8 +19,6 @@
         }
     }
 }
-.container {
-}
 
 .health {
     display: flex;
@@ -43,11 +41,12 @@
             justify-content: flex-start;
             align-items: center;
             gap: 1rem;
+            margin: 20px 0;
 
             img {
                 width: 150px;
-                // background-color: #e8e8e8;
-
+                border: 1px solid #eee;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 height: 150px;
                 border-radius: 50%;
             }

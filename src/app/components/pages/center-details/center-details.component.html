@@ -54,42 +54,18 @@
                 <div class="btn-group" dropdown>
                     <button
                         id="button-animated"
-                        dropdownToggle
+                        [routerLink]="['/call-request']"
+                        [queryParams]="{
+                                        center: centerId,
+                                     }"
                         type="button"
-                        class="dropdown-toggle call"
-                        aria-controls="dropdown-animated"
+                        class="call"
                     >
                         <i class="bx bxs-phone-call"></i>
                         {{
                             lang === "ltr" ? "Request Call" : "أطلب الأتصال بنا"
                         }}
-                        <span class="caret"></span>
                     </button>
-                    <ul
-                        id="dropdown-animated"
-                        *dropdownMenu
-                        class="dropdown-menu menu-dropdown"
-                        role="menu"
-                        aria-labelledby="button-animated"
-                    >
-                        <li
-                            *ngFor="let item of center?.service"
-                            role="menuitem"
-                        >
-                            <button
-                                type="button"
-                                (click)="
-                                    postService({
-                                        center_id: centerId,
-                                        service_id: item.id
-                                    })
-                                "
-                                class="dropdown-item drop-call"
-                            >
-                                {{ item.name }}
-                            </button>
-                        </li>
-                    </ul>
                 </div>
                 <!-- </a> -->
                 <a [href]="center?.whatsApp" class="whatsapp">

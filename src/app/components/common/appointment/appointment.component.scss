@@ -5,7 +5,7 @@
 }
 .appointment-overview-contact {
     position: relative;
-
+    height: 100%;
     &::before {
         left: 0;
         bottom: 0;
@@ -19,6 +19,7 @@
     }
     img {
         border-radius: 5px;
+        height: 100%;
     }
     .appointment-info {
         position: absolute;
@@ -71,6 +72,7 @@
     background-color: var(--white-color);
     padding: 40px 30px;
     border-radius: 5px;
+    height: 100%;
 
     .content {
         h4 {

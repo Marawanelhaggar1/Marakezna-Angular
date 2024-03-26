@@ -30,10 +30,10 @@ export class BookAppointmentComponent {
 
     constructor(
         private _router: Router,
-        private _formBuilder: FormBuilder,
         private _ActivatedRoute: ActivatedRoute,
         private _doctorService: DoctorService,
         private _bookingService: BookingService,
+        private _formBuilder: FormBuilder,
         private _userService: UserService,
         private _Cookie: CookieService
     ) {
@@ -42,7 +42,6 @@ export class BookAppointmentComponent {
             email: ['', [Validators.required, Validators.email]],
             phone: ['', [Validators.required]],
             payment: ['', [Validators.required]],
-            time: ['00:00', [Validators.required]],
         });
     }
 
@@ -50,11 +49,14 @@ export class BookAppointmentComponent {
         if (this.appointmentForm.valid) {
             this.sendBooking();
         } else {
-            this.alertStatus = 'warning';
-            this.alert =
-                this.lang === 'ltr'
-                    ? 'Please enter valid Data'
-                    : 'أرجوك أدخل بيانات صحيحة';
+            Swal.fire({
+                title: this.lang === 'ltr' ? 'Try Again!' : 'حاول مجددا!',
+                text:
+                    this.lang === 'ltr'
+                        ? 'Enter Valid Data'
+                        : 'أدخل بيانات صحيحة',
+                icon: 'error',
+            });
         }
     }
 

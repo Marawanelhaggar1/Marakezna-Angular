@@ -244,14 +244,6 @@ export class BookDoctorsPageComponent {
         }
     }
 
-    // whichCenterId(body: any) {
-    //     if (this.centerId) {
-    //         this.postCall({ center_id: this.centerId });
-    //     } else {
-
-    //     }
-    // }
-
     postCall(body: any) {
         return this._bookingService.requestCall(body).subscribe({
             next: (data) => {

@@ -47,6 +47,7 @@ import { BookAppointmentComponent } from './components/pages/book-appointment/bo
 import { ScanAndLabsComponent } from './components/pages/scan-and-labs/scan-and-labs.component';
 import { CenterDetailsComponent } from './components/pages/center-details/center-details.component';
 import { CentersComponent } from './components/pages/centers/centers.component';
+import { CallRequestPageComponent } from './components/pages/call-request-page/call-request-page.component';
 
 const routes: Routes = [
     { path: '', component: HomeDemoOneComponent },
@@ -57,6 +58,7 @@ const routes: Routes = [
     { path: 'doctors', component: DentistsPageComponent },
     { path: 'insurance', component: InsurancePageComponent },
     { path: 'doctors-details', component: DentistDetailsPageComponent },
+    { path: 'call-request', component: CallRequestPageComponent },
     {
         path: 'portfolio',
         component: PortfolioPageComponent,

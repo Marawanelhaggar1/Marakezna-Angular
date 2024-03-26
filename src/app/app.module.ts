@@ -117,6 +117,7 @@ import { ScanAndLabsComponent } from './components/pages/scan-and-labs/scan-and-
 import { CenterDetailsComponent } from './components/pages/center-details/center-details.component';
 import { CentersComponent } from './components/pages/centers/centers.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CallRequestPageComponent } from './components/pages/call-request-page/call-request-page.component';
 
 @NgModule({
     declarations: [
@@ -205,6 +206,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
         ScanAndLabsComponent,
         CenterDetailsComponent,
         CentersComponent,
+        CallRequestPageComponent,
     ],
     imports: [
         BrowserModule,

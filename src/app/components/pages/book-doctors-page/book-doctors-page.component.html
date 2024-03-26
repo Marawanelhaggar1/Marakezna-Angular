@@ -147,16 +147,14 @@
                 <div class="buttons">
                     <a
                         class="call"
-                        (click)="
+                        [routerLink]="['/call-request']"
+                        [queryParams]="
                             centerId
-                                ? postCall({
-                                      center_id: centerId,
-                                      doctor_id: doc.id
-                                  })
-                                : postCall({
-                                      center_id: doc.health_center[0].id,
-                                      doctor_id: doc.id
-                                  })
+                                ? {
+                                      center: centerId,
+                                      doctor: doc.id
+                                  }
+                                : { doctor: doc.id }
                         "
                     >
                         <i class="bx bxs-phone-call"></i>

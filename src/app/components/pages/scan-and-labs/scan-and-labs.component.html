@@ -43,10 +43,12 @@
                             <div class="btn-group" dropdown>
                                 <button
                                     id="button-animated"
-                                    dropdownToggle
                                     type="button"
-                                    class="dropdown-toggle call"
-                                    aria-controls="dropdown-animated"
+                                    class="call"
+                                    [routerLink]="['/call-request']"
+                                    [queryParams]="{
+                                        center: cen.id,
+                                     }"
                                 >
                                     <i class="bx bxs-phone-call"></i>
                                     {{
@@ -54,33 +56,7 @@
                                             ? "Request Call"
                                             : "أطلب الأتصال بنا"
                                     }}
-                                    <span class="caret"></span>
                                 </button>
-                                <ul
-                                    id="dropdown-animated"
-                                    *dropdownMenu
-                                    class="dropdown-menu menu-dropdown"
-                                    role="menu"
-                                    aria-labelledby="button-animated"
-                                >
-                                    <li
-                                        *ngFor="let item of cen?.service"
-                                        role="menuitem"
-                                    >
-                                        <button
-                                            type="button"
-                                            (click)="
-                                                postService({
-                                                    center_id: cen.id,
-                                                    service_id: item.id
-                                                })
-                                            "
-                                            class="dropdown-item drop-call"
-                                        >
-                                            {{ item.name }}
-                                        </button>
-                                    </li>
-                                </ul>
                             </div>
                             <a [href]="cen.whatsApp" class="whatsapp">
                                 <i class="fa-brands fa-whatsapp"></i>

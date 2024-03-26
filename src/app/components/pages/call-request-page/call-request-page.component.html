@@ -1,0 +1,141 @@
+<div [dir]="lang" class="container">
+    <div *ngIf="doctorId" class="profile">
+        <div class="image">
+            <img [src]="doctor.image" alt="image" />
+        </div>
+        <div class="details">
+            <h3>
+                {{ doctor.name }}
+            </h3>
+            <p>
+                {{ doctor.title }}
+            </p>
+            <div class="doctor-info">
+                <div class="info">
+                    <i class="bx bx-location-plus"></i>
+                    <p>
+                        {{ doctor.specialty.specialty }}
+                    </p>
+                </div>
+
+                <div class="info">
+                    <i class="bx bx-money"></i>
+                    <p>
+                        {{
+                            lang === "ltr"
+                                ? "Fee : " + doctor.fee + " EGB"
+                                : "السعر : " + doctor.fee + " جم"
+                        }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="centerId" class="profile">
+        <div class="image">
+            <img [src]="center.image" alt="image" />
+        </div>
+        <div class="details">
+            <h3>
+                {{ center.name }}
+            </h3>
+
+            <div class="doctor-info">
+                <div class="info">
+                    <i class="bx bx-location-plus"></i>
+                    <p>
+                        {{ center.address }}
+                    </p>
+                </div>
+
+                <div class="info"></div>
+            </div>
+        </div>
+    </div>
+    <div class="form">
+        <h3>{{ lang === "ltr" ? "Request Form" : " أطلب مكالمة الأن " }}</h3>
+        <div>
+            <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        formControlName="user_name"
+                        class="form-control"
+                        [placeholder]="
+                            lang === 'ltr' ? 'Patient Name' : 'اسم المريض'
+                        "
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        formControlName="user_email"
+                        class="form-control"
+                        [placeholder]="
+                            lang === 'ltr'
+                                ? 'Email address'
+                                : 'بريدك اللألكترونى'
+                        "
+                    />
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        formControlName="user_mobile"
+                        class="form-control"
+                        [placeholder]="
+                            lang === 'ltr' ? 'Mobile Number' : 'رقم هاتفك'
+                        "
+                    />
+                </div>
+
+                <div *ngIf="!centerId" class="form-group">
+                    <select
+                        formControlName="center"
+                        aria-placeholder="Select Health Center"
+                    >
+                        <option value="" selected>
+                            {{
+                                lang === "ltr"
+                                    ? " Select Health Center"
+                                    : "اختر المركز الطبى"
+                            }}
+                        </option>
+                        <option
+                            *ngFor="let item of doctor?.health_center"
+                            [value]="item.id"
+                        >
+                            {{ item.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div *ngIf="!doctorId" class="form-group">
+                    <select
+                        formControlName="service_id"
+                        aria-placeholder="Select Health Center"
+                    >
+                        <option value="" selected>
+                            {{
+                                lang === "ltr"
+                                    ? " Select Service"
+                                    : "اختر الخدمة"
+                            }}
+                        </option>
+                        <option
+                            *ngFor="let item of center?.service"
+                            [value]="item.id"
+                        >
+                            {{ item.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="default-btn mb-4">
+                    {{ lang === "ltr" ? "Book an Appointment" : " أحجز الأن " }}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
