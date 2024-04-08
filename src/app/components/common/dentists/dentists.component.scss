@@ -3,6 +3,10 @@
     margin-bottom: 25px;
     transition: var(--transition);
     background-color: var(--white-color);
+    .image {
+        height: 355px;
+        overflow: hidden;
+    }
 
     img {
         border-radius: 10px 10px 0 0;
