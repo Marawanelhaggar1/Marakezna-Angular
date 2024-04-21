@@ -7,6 +7,9 @@
     .image {
         height: 300px !important;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 100%;
         img {
             width: 90%;
