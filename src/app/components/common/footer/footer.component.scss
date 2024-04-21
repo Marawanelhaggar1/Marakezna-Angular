@@ -259,7 +259,8 @@
 
             a {
                 font-weight: 600;
-                color: var(--main-color);
+                // color: var(--main-color);
+                color: var(--white-color);
 
                 &:hover {
                     color: var(--white-color);
@@ -520,9 +521,6 @@
 
 /* Max width 767px */
 @media only screen and (max-width: 767px) {
-    .footer-area {
-        // background-color: #091e3e;
-    }
     .single-footer-widget {
         h2 {
             margin-bottom: 15px;
